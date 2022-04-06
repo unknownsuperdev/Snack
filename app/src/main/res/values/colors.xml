@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#664391</color>
+    <color name="primary_ripple">#422C5E</color>
+    <color name="primary_30opacity">#4D664391</color>
+
+
+    <color name="primaryDark">#7F60A3</color>
+    <color name="accent">#664391</color>
+
+    <color name="gray_default">#E5E7EB</color>
+    <color name="grey_light">#9CA3AF</color>
+    <color name="gray_medium">#6E7698</color>
+    <color name="grey_50opacity">#80D1D5DB</color>
+
+    <color name="pb_background">#F0EDF4</color>
+    <color name="pb_progress">#FBC22F</color>
+
+    <color name="text_normal">#0B090A</color>
+    <color name="text_accent">#C35588</color>
+
+    <color name="white">#fff</color>
+    <color name="white_30opacity">#4DFFFFFF</color>
+
+    <color name="status_bar">#4DFFFFFF</color>
+    <color name="status_bar_sign_nup">#7F61A4</color>
+
+    <color name="green">#00A374</color>
+    <color name="green_light">#73C3AA</color>
+    <color name="red">#EB5757</color>
+    <color name="orange">#EE915C</color>
+    <color name="yellow">#EEBC5C</color>
+    <color name="bg_main">#fbfbfb</color>
+    <color name="divider">#80D1D5DB</color>
+
+    <color name="yellow_12opacity">#1FFBC22F</color>
+    <color name="red_12opacity">#1FFF8692</color>
+    <color name="green_12opacity">#1F00A374</color>
+
+    <color name="transaction_text_yellow">#FFF1B825</color>
+    <color name="transaction_text_pink">#FFFF8692</color>
+    <color name="transaction_text_green">#FF00A374</color>
+
+    <color name="button_text">#26175F</color>
+
+</resources>

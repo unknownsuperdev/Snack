@@ -1,0 +1,21 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    ext {
+        gms_version = "4.3.10"
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.40"
+        classpath "com.google.gms:google-services:$gms_version"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

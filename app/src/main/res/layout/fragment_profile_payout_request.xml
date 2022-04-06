@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/bg_main"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_arrow_back_black"
+        app:title="Payout request" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:layout_marginBottom="@dimen/padding_small"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/padding_default"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:drawablePadding="@dimen/padding_small"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/card_details"
+                android:textColor="@color/text_normal" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Text.Hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:text="@string/card_number" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:layout_marginBottom="2dp">
+
+                <app.snack.ui.view.FormattedNumberEditText
+                    android:id="@+id/etNumber"
+                    android:paddingStart="@dimen/padding_default"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:hint="@string/ex_card_number"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    app:groupSeparator="-"
+                    android:text=""/>
+
+                <!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/etNumber"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="@string/ex_card_number"-->
+<!--                    android:imeOptions="actionDone"-->
+<!--                    android:inputType="number"-->
+<!--                    android:text="" />-->
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Text.Hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_small"
+                android:text="@string/cardholder_name" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCardholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:layout_marginBottom="@dimen/padding_default">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCardholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ex_john_doe"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="24"
+                    android:text="" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:layout_marginBottom="@dimen/padding_small"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/padding_default"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:drawablePadding="@dimen/padding_small"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/sum_to_payout"
+                android:textColor="@color/text_normal" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Text.Hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:text="@string/enter_amount" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_marginEnd="@dimen/padding_default">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="0.0"
+                    android:maxLength="6"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
+                    tools:text="0.0" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_micro"
+                android:layout_marginBottom="@dimen/padding_default"
+                android:fontFamily="@font/inter_medium"
+                tools:text="Balance: $25"
+                android:textColor="@color/primary"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRequest"
+        style="@style/Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_default"
+        android:text="@string/request_a_payout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</LinearLayout>

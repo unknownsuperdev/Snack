@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:focusable="true"
+        android:paddingBottom="@dimen/navigation_size">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/labelConnecting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:drawablePadding="@dimen/padding_small"
+                android:text="@string/on_air_wi_fi"
+                app:drawableStartCompat="@drawable/dot" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardEarned"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/padding_default"
+                app:cardBackgroundColor="@color/primary"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="@dimen/padding_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelConnecting">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_default">
+
+                    <TextView
+                        android:id="@+id/labelDollar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="$"
+                        android:textColor="@color/yellow"
+                        android:textSize="24sp"
+                        app:layout_constraintBaseline_toBaselineOf="@id/tvEarned"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvEarned"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        tools:text="0.0"
+                        android:layout_marginStart="@dimen/padding_small"
+                        android:textColor="@color/white"
+                        android:textSize="32sp"
+                        app:layout_constraintStart_toEndOf="@+id/labelDollar"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvGathered"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_default"
+                        android:fontFamily="@font/inter_medium"
+                        tools:text="Gathered on this device: 0.0 B"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvEarned" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/emailConfirmationRequired"
+                        tools:visibility="visible"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal"
+                        app:cardCornerRadius="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvGathered">
+
+                        <LinearLayout
+                            android:weightSum="5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_weight="0"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_icons_circle_alert" />
+
+                            <TextView
+                                android:layout_weight="3"
+                                style="@style/Text.Small"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/you_need_to_confirm" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:layout_weight="2"
+                                android:id="@+id/btnSendEmail"
+                                style="@style/Button.Normal"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:text="@string/send_email" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_dashboard"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvEarned" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardPowerSaving"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/padding_default"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="@dimen/padding_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardEarned">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_medium">
+
+                    <TextView
+                        android:id="@+id/labelPowerSavingTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_power"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:fontFamily="@font/inter_semibold"
+                        android:gravity="center_vertical"
+                        android:text="@string/power_saving_mode"
+                        android:textColor="@color/text_normal"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/labelPowerSavingBody"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_default"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/dim_screen"
+                        android:textColor="@color/gray_medium"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelPowerSavingTitle" />
+
+                    <Switch
+                        android:id="@+id/switchPowerSaving"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/labelPowerSavingTitle" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+<!--            two cards container -->
+
+            <LinearLayout
+                android:paddingBottom="0dp"
+                android:layout_width="match_parent"
+                android:weightSum="2"
+                android:layout_height="140dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardGatheredToday"
+                    android:layout_width="150dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_default"
+                    android:layout_marginTop="@dimen/padding_default"
+                    android:layout_marginEnd="@dimen/padding_small"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/padding_default"
+                    app:cardElevation="@dimen/padding_small">
+
+<!--                    left card "earned today" -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_small">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/gathered_today"
+                            android:textColor="@color/gray_medium"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:gravity="center_vertical"
+                            android:id="@+id/tvGatheredToday"
+                            android:layout_width="wrap_content"
+                            android:layout_height="42dp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/inter_semibold"
+                            android:text="@string/_0_0_mb"
+                            android:textColor="@color/text_normal"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/labelPowerSavingTitle" />
+
+                        <TextView
+                            android:text="@string/the_stats_is_updated_hourly"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/text_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardEarnedToday"
+                    android:layout_width="150dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_small"
+                    android:layout_marginTop="@dimen/padding_default"
+                    android:layout_marginEnd="@dimen/padding_default"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/padding_default"
+                    app:cardElevation="@dimen/padding_small">
+
+<!--  right card "gathered today"                   -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_small">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/earned_today"
+                            android:textColor="@color/gray_medium"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieArrow"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/arrow" />
+
+                            <TextView
+                                android:id="@+id/tvEarnedToday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="42dp"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/inter_semibold"
+                                android:text="¢0.00"
+                                android:textColor="@color/text_normal"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:text="@string/the_stats_is_updated_hourly"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/text_small"
+                            android:layout_marginEnd="@dimen/padding_middle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatToggleButton
+                android:id="@+id/btnShareTraffic"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:background="@drawable/toggle_button_primary"
+                android:fontFamily="@font/inter_semibold"
+                android:textAllCaps="false"
+                android:textColor="@color/toggle_button"
+                android:textOff="@string/share_traffic"
+                android:textOn="@string/stop_sharing_traffic"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieMain"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:alpha="0"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/main" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

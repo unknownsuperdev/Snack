@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/navigation"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_default"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:layout_marginBottom="@dimen/padding_default"
+        android:background="@drawable/navigation_bg"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/padding_default"
+        android:paddingEnd="@dimen/padding_default">
+
+        <TextView
+            android:id="@+id/btnDashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_dashboard"
+            android:fontFamily="@font/inter_regular"
+            android:foreground="@drawable/ripple_button_primary"
+            android:gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_dashboard"
+            android:text="@string/device"
+            android:textColor="@color/grey_light"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/btnProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_profile"
+            android:fontFamily="@font/inter_regular"
+            android:foreground="@drawable/ripple_button_primary"
+            android:gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_dashboard"
+            android:text="@string/profile"
+            android:textColor="@color/grey_light"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_settings"
+            android:fontFamily="@font/inter_regular"
+            android:foreground="@drawable/ripple_button_primary"
+            android:gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_dashboard"
+            android:text="@string/settings"
+            android:textColor="@color/grey_light"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="2dp" />
+
+</FrameLayout>

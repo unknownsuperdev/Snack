@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rect_rounded_dark"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/padding_small"
+    android:padding="@dimen/padding_small">
+
+    <TextView
+        android:id="@+id/tvEarned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvShared"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/padding_micro"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+
+</LinearLayout>

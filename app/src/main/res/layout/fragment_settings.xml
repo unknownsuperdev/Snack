@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_default"
+        android:layout_marginBottom="@dimen/padding_default"
+        android:fontFamily="@font/inter_medium"
+        android:text="@string/settings"
+        android:textColor="@color/text_normal"
+        android:textSize="24sp" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:focusable="true"
+        android:paddingBottom="@dimen/navigation_size">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/personal_info_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_marginBottom="@dimen/padding_small"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/personal_info"
+                android:textColor="@color/grey_light"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/personl_info_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/padding_default"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="@dimen/padding_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btnChangeEmail"
+                        style="@style/Button.Settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_right"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:text="@string/change_email" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginStart="@dimen/padding_default"
+                        android:layout_marginEnd="@dimen/padding_default"
+                        android:background="@color/divider" />
+
+                    <TextView
+                        android:id="@+id/btnChangePassword"
+                        style="@style/Button.Settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_right"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:text="@string/change_password" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:layout_marginBottom="@dimen/padding_small"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/sharing_settings"
+                android:textColor="@color/grey_light"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/padding_default"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="@dimen/padding_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/btnAllowMobileData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/Button.Settings"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/allow_mobile_data_usage" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchAllowMobileData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:checked="true"
+                            android:paddingStart="@dimen/padding_default"
+                            android:paddingEnd="@dimen/padding_default" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginStart="@dimen/padding_default"
+                        android:layout_marginEnd="@dimen/padding_default"
+                        android:background="@color/divider" />
+
+
+                    <LinearLayout
+                        android:id="@+id/btnStopSharingData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/Button.Settings"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/stop_sharing_when_battery_is_low" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchStopSharingData"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:checked="true"
+                            android:paddingStart="@dimen/padding_default"
+                            android:paddingEnd="@dimen/padding_default" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginStart="@dimen/padding_default"
+                        android:layout_marginEnd="@dimen/padding_default"
+                        android:background="@color/divider" />
+
+                    <LinearLayout
+                        android:id="@+id/btnLimitTraffic"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Limit monthly traffic" />
+
+                        <TextView
+                            android:id="@+id/tvLimit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_arrow_right"
+                            android:drawablePadding="@dimen/padding_small"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center_vertical"
+                            android:paddingEnd="@dimen/padding_default"
+                            android:text="@string/no_limits"
+                            android:textColor="@color/gray_medium"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:layout_marginBottom="@dimen/padding_small"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/other"
+                android:textColor="@color/grey_light"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:layout_marginBottom="@dimen/padding_medium"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="@dimen/padding_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btnHelp"
+                        style="@style/Button.Settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_right"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:text="@string/help" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginStart="@dimen/padding_default"
+                        android:layout_marginEnd="@dimen/padding_default"
+                        android:background="@color/divider" />
+
+                    <TextView
+                        android:id="@+id/btnPrivacyPolicy"
+                        style="@style/Button.Settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_right"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:text="@string/privacy_policy1" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginStart="@dimen/padding_default"
+                        android:layout_marginEnd="@dimen/padding_default"
+                        android:background="@color/divider" />
+
+                    <TextView
+                        android:id="@+id/btnTerms"
+                        style="@style/Button.Settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_right"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:text="@string/terms_of_use1" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginStart="@dimen/padding_default"
+                        android:layout_marginEnd="@dimen/padding_default"
+                        android:background="@color/divider" />
+
+                    <TextView
+                        android:id="@+id/btnLogout"
+                        style="@style/Button.Settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:text="@string/log_out"
+                        android:textColor="@color/red" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

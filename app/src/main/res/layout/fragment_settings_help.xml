@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/bg_main"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_arrow_back_black"
+        app:title="@string/help" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:layout_marginBottom="@dimen/padding_small"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="@dimen/padding_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btnCard1"
+                        style="@style/Button.Settings.Help"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:text="@string/general_questions" />
+
+                    <LinearLayout
+                        android:id="@+id/group1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/btn11"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="@string/how_does_snack_work" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn12"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="@string/how_to_get_started" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn13"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="@string/how_to_make_a_payout" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn14"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="@string/how_to_stop_sharing_traffic" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn15"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="@string/does_it_secure" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:layout_marginBottom="@dimen/padding_small"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="@dimen/padding_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btnCard2"
+                        style="@style/Button.Settings.Help"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:text="@string/technical_questions" />
+
+                    <LinearLayout
+                        android:id="@+id/group2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/btn21"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="@string/what_is_the_minimum" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn22"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="@string/are_there_any_withdrawal_fees" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn23"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="@string/how_to_make_a_payout" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn24"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="@string/how_to_stop_sharing_traffic" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn25"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="@string/does_it_secure" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:layout_marginBottom="@dimen/padding_small"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="@dimen/padding_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btnCard3"
+                        style="@style/Button.Settings.Help"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:text="@string/payout_questions" />
+
+                    <LinearLayout
+                        android:id="@+id/group3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/btn31"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="What is the minimum balance threshold to withdraw money? " />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn32"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="Are there any withdrawal fees?" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn33"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="Why has my payout failed?" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn34"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="Are there any withdrawal deadlines?" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:layout_marginBottom="@dimen/padding_default"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="@dimen/padding_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btnCard4"
+                        style="@style/Button.Settings.Help"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:foreground="@drawable/ripple_button_primary"
+                        android:text="@string/account_questions" />
+
+                    <LinearLayout
+                        android:id="@+id/group4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/btn41"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="I forgot my password. How to reset it?" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn42"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="How to verify/confirm my email address?" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn43"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="How to add a device to your Snack account?" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginStart="@dimen/padding_default"
+                            android:layout_marginEnd="@dimen/padding_default"
+                            android:background="@color/divider" />
+
+                        <TextView
+                            android:id="@+id/btn44"
+                            style="@style/Button.Settings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple_button_primary"
+                            android:text="How can I delete my account?" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSupport"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_default"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:layout_marginBottom="@dimen/padding_default"
+        android:elevation="@dimen/padding_default"
+        android:foreground="@drawable/bg_fab_support"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</RelativeLayout>

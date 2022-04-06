@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/padding_default"
+    android:paddingTop="@dimen/padding_small"
+    android:paddingEnd="@dimen/padding_default"
+    android:paddingBottom="@dimen/padding_small">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/card_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_micro"
+            android:fontFamily="@font/inter_medium"
+            tools:text="**** 2345"
+            android:textColor="@color/text_normal"
+            android:textSize="16sp"
+            app:fontFamily="@font/inter_medium" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_regular"
+            tools:text="Nov 12, 2021"
+            android:textColor="@color/gray_medium"
+            android:textSize="12sp"
+            app:fontFamily="@font/inter_medium" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/rect_rounded"
+        android:backgroundTint="@color/yellow_12opacity"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_small"
+        tools:text="Pending"
+        android:textColor="@color/yellow"
+        app:fontFamily="@font/inter_medium" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="@font/inter_medium"
+        tools:text="$225"
+        android:textColor="@color/text_normal"
+        android:textSize="18sp"
+        app:fontFamily="@font/inter_medium" />
+
+</LinearLayout>

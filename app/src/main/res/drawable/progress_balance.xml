@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <shape>
+
+            <corners android:radius="@dimen/padding_small" />
+
+            <solid android:color="@color/pb_background" />
+
+        </shape>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <scale
+            android:scaleWidth="100%"
+            android:useIntrinsicSizeAsMinimum="true">
+
+            <shape>
+
+                <corners android:radius="@dimen/padding_small" />
+
+                <solid android:color="@color/pb_progress" />
+
+                <size android:width="@dimen/padding_small" />
+
+            </shape>
+
+        </scale>
+
+    </item>
+
+</layer-list>

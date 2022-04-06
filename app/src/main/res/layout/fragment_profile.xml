@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_default"
+            android:layout_weight="1"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/profile"
+            android:textColor="@color/text_normal"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/btnHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:foreground="@drawable/ripple_button_primary"
+            android:padding="@dimen/padding_default"
+            android:src="@drawable/ic_history"
+            app:tint="@color/primary" />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:focusable="true"
+        android:paddingBottom="@dimen/navigation_size">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/padding_default"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="24dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp">
+
+                    <TextView
+                        android:id="@+id/labelCurrentBalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_profile_cookies"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/current_balance"
+                        android:textColor="@color/text_normal"
+                        app:layout_constraintBottom_toBottomOf="@id/tvEarned"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvEarned" />
+
+                    <TextView
+                        android:id="@+id/tvEarned"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="$0.00"
+                        android:textColor="@color/text_normal"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <FrameLayout
+                        android:id="@+id/btnProgress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_default"
+                        android:foreground="@drawable/ripple_button_primary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvEarned">
+
+                        <ProgressBar
+                            android:id="@+id/progress_limit"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:indeterminate="false"
+                            android:maxHeight="44dp"
+                            android:minHeight="44dp"
+                            tools:progress="75"
+                            android:progressDrawable="@drawable/progress_balance" />
+
+                        <TextView
+                            android:id="@+id/tvPayoutComplete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/inter_regular"
+                            android:paddingTop="@dimen/padding_default"
+                            android:paddingBottom="@dimen/padding_default"
+                            tools:text="Payout: 75% complete"
+                            android:textColor="@color/primary"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/labelPowerSavingBody"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_default"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/collect_minimum_10_to_request_a_payout"
+                        android:textColor="@color/gray_medium"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btnProgress" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/emptyView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:layout_marginBottom="@dimen/padding_medium"
+                android:visibility="gone"
+                tools:visibility="gone"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/padding_default"
+                app:cardElevation="@dimen/padding_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+
+                    <TextView
+                        android:id="@+id/labelEarnings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/earnings"
+                        android:textColor="@color/text_normal" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_default"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/padding_default"
+                        android:paddingEnd="@dimen/padding_default">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/img_profile_empty" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/padding_medium"
+                            android:drawablePadding="@dimen/padding_small"
+                            android:fontFamily="@font/inter_semibold"
+                            android:text="@string/no_data_available"
+                            android:textColor="@color/text_normal"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/padding_small"
+                            android:drawablePadding="@dimen/padding_small"
+                            android:fontFamily="@font/inter_regular"
+                            android:gravity="center"
+                            android:text="@string/your_stats_will_appear"
+                            android:textColor="@color/gray_medium" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <LinearLayout
+                android:id="@+id/noChartDataLayout"
+                tools:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/donut_chart" />
+
+                <TextView
+                    android:id="@+id/top_label"
+                    style="@style/Text.Title2.Medium"
+                    android:layout_marginTop="24dp"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_data_available" />
+
+                <TextView
+                    android:id="@+id/bottom_label"
+                    style="@style/Text.Hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:text="@string/your_stats_will_appear_when_you_ll_nstart_to_share_traffic"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/chartLayout"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_medium">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/earnings"
+                        android:textColor="@color/text_normal" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvEarnings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
+                        android:gravity="center_vertical"
+                        tools:text="$60"
+                        android:textColor="@color/text_normal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_micro"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/last_week"
+                        android:textColor="@color/grey_light"
+                        android:textSize="12sp" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/lastWeekEarnings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
+                        android:gravity="center_vertical"
+                        tools:text="$25"
+                        android:textColor="@color/grey_light"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/groupY"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="@id/chart"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/chart">
+
+                        <TextView
+                            android:id="@+id/tvAxis4"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="end"
+                            android:includeFontPadding="false"
+                            android:text="$2.5"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvAxis3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="top|end"
+                            android:includeFontPadding="false"
+                            android:text="$2"
+                            android:visibility="invisible"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvAxis2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center_vertical|end"
+                            android:includeFontPadding="false"
+                            android:text="$1.5"
+                            android:visibility="invisible"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvAxis1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="bottom|end"
+                            android:includeFontPadding="false"
+                            android:text="$1"
+                            android:visibility="invisible"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvAxis0"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="bottom|end"
+                            android:includeFontPadding="false"
+                            android:text="¢0.0000"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <app.snack.ui.view.RoundedBarChart
+                        android:id="@+id/chart"
+                        android:layout_width="0dp"
+                        android:layout_marginStart="@dimen/padding_micro"
+                        android:layout_height="200dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/groupY"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/groupX"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_micro"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="@id/chart"
+                        app:layout_constraintStart_toStartOf="@id/chart"
+                        app:layout_constraintTop_toBottomOf="@id/chart">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:text="@string/mon"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:text="@string/tue"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:text="@string/wed"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:text="@string/the"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:text="@string/fri"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:text="@string/sat"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:text="@string/sun"
+                            android:textColor="@color/grey_light"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
