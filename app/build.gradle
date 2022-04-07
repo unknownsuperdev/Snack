@@ -20,18 +20,18 @@ android {
 //            storeFile file('./keystore/debug.keystore')
 //            storePassword "android"
 //        }
-        debug {
-            keyAlias "key0"
-            keyPassword "325698"
-            storeFile file('./keystore/snack-key.jks')
-            storePassword "325698"
-        }
-        release {
-            keyAlias "key0"
-            keyPassword "325698"
-            storeFile file('./keystore/snack-key.jks')
-            storePassword "325698"
-        }
+//        debug {
+//            keyAlias "key0"
+//            keyPassword "325698"
+//            storeFile file('./keystore/snack-key.jks')
+//            storePassword "325698"
+//        }
+//        release {
+//            keyAlias "key0"
+//            keyPassword "325698"
+//            storeFile file('./keystore/snack-key.jks')
+//            storePassword "325698"
+//        }
     }
 
     applicationVariants.all { variant ->
@@ -59,13 +59,13 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.debug
+          //  signingConfig signingConfigs.debug
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+           // signingConfig signingConfigs.release
         }
     }
 

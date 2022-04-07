@@ -1,8 +1,11 @@
 package app.snack.ui.login.screens.sign_up
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
@@ -34,6 +37,7 @@ class SignUpEmailFragment : BindingFragment<FragmentSignUpEmailBinding, LoginVie
     }
 
     override fun setupUI() {
+        setupKeyboard()
         with(binding) {
             tilEmail.isEndIconVisible = false
 
@@ -52,7 +56,7 @@ class SignUpEmailFragment : BindingFragment<FragmentSignUpEmailBinding, LoginVie
             fabNext.onClick {
                 viewModel.enterEmail(etEmail.text())
                 viewModel.checkEmail(etEmail.text()).observe(viewLifecycleOwner) {
-                    if(it) {
+                    if (it) {
                         addScreen(Screen.SIGN_UP_CREATE_PASSWORD)
                     } else {
                         tilEmail.isErrorEnabled = true
@@ -60,6 +64,22 @@ class SignUpEmailFragment : BindingFragment<FragmentSignUpEmailBinding, LoginVie
                     }
                 }
             }
+        }
+    }
+
+    private fun setupKeyboard() {
+        binding.root.setOnApplyWindowInsetsListener { _, windowInsets ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                val imeHeight = windowInsets.getInsets(WindowInsets.Type.ime()).bottom
+                binding.root.setPadding(0, 0, 0, imeHeight)
+                val insets =
+                    windowInsets.getInsets(WindowInsets.Type.ime() or WindowInsets.Type.systemGestures())
+                insets
+            } else {
+                activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+            }
+
+            windowInsets
         }
     }
 
