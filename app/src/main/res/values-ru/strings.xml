@@ -105,7 +105,7 @@
     <string name="log_out">Выйти</string>
     <string name="enter_your_email">Ваш электронный адрес</string>
     <string name="save">Сохранить</string>
-    <string name="week">слабый</string>
+    <string name="weak">слабый</string>
     <string name="minimum_8_characters">Минимум 8 символов</string>
     <string name="general_questions">Общие вопросы</string>
     <string name="how_does_snack_work">How does Snack work?</string>
