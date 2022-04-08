@@ -102,7 +102,7 @@ class SignUpCreatePasswordFragment :
                 viewPasswordLevel4.setTintResource(R.color.gray_default)
 
                 tvPasswordLevel.textColorResource = R.color.orange
-                tvPasswordLevel.text = "Week"
+                tvPasswordLevel.text = "Weak"
 
                 fabNext.disable()
             }
