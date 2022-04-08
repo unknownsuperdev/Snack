@@ -1,6 +1,9 @@
 package app.snack.ui.main.screens.settings.screens.change_email
 
+import android.os.Build
 import android.view.LayoutInflater
+import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
@@ -19,6 +22,7 @@ class SettingsChangeEmailFragment :
         get() = FragmentSettingsChangeEmailBinding::inflate
 
     override fun setupUI() {
+        setupKeyboard()
         binding.toolbar.setNavigationOnClickListener { closeScreen() }
         binding.tilEmail.isEndIconVisible = false
         binding.etEmail.addOnImeActionClick { binding.btnSave.callOnClick() }
@@ -35,6 +39,22 @@ class SettingsChangeEmailFragment :
             } else {
                 binding.tilEmail.error = getString(R.string.invalid_email)
             }
+        }
+    }
+
+    private fun setupKeyboard() {
+        binding.root.setOnApplyWindowInsetsListener { _, windowInsets ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                val imeHeight = windowInsets.getInsets(WindowInsets.Type.ime()).bottom
+                binding.root.setPadding(0, 0, 0, imeHeight)
+                val insets =
+                    windowInsets.getInsets(WindowInsets.Type.ime() or WindowInsets.Type.systemGestures())
+                insets
+            } else {
+                activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+            }
+
+            windowInsets
         }
     }
 
