@@ -128,7 +128,7 @@ class SettingsChangePasswordFragment :
                 viewPasswordLevel4.setTintResource(R.color.gray_default)
 
                 tvPasswordLevel.textColorResource = R.color.orange
-                tvPasswordLevel.text = "Week"
+                tvPasswordLevel.text = "Weak"
 
                 btnSave.disable()
             }
