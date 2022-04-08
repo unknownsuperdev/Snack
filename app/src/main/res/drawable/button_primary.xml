@@ -3,7 +3,7 @@
     <item android:state_enabled="false">
         <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
 
-            <corners android:radius="@dimen/padding_medium" />
+            <corners android:radius="4dp" />
 
             <solid android:color="@color/gray_default" />
 
@@ -16,9 +16,9 @@
             <item>
                 <shape android:shape="rectangle">
 
-                    <corners android:radius="@dimen/padding_medium" />
+                    <corners android:radius="4dp" />
 
-                    <gradient android:angle="90" android:endColor="#8462CB" android:startColor="#CC63C1" />
+                    <solid android:angle="90" android:endColor="#8462CB" android:startColor="#CC63C1" />
                 </shape>
 
             </item>
@@ -26,7 +26,7 @@
             <item>
                 <shape android:shape="rectangle">
 
-                    <corners android:radius="@dimen/padding_medium" />
+                    <corners android:radius="4dp" />
 
                     <solid android:color="#33000000" />
 
@@ -40,7 +40,7 @@
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
 
-            <corners android:radius="@dimen/padding_medium" />
+            <corners android:radius="4dp" />
 
             <gradient android:angle="90" android:endColor="#8462CB" android:startColor="#CC63C1" />
 

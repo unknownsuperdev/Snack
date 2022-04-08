@@ -145,4 +145,7 @@
     <string name="payout_completed_on">Payout: %1$.1f%% complete</string>
     <string name="the_stats_is_updated_hourly">The stats is updated hourly</string>
     <string name="password_mismatch">Password mismatch, check the spelling</string>
+    <string name="setup_snack_header_text">Настроить Snack</string>
+    <string name="setup_snack_title">Использовать мобильные данные</string>
+    <string name="setup_snack_hint">Если выключить, Snack будет работать только по Wi-Fi</string>
 </resources>

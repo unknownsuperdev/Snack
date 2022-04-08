@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="@string/setup_snack_header_text"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/text_normal"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="17dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <ImageView
+        android:id="@+id/iv_cookie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/setup_snack_cookie"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/setup_snack_title"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/text_black"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/iv_cookie"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/setup_snack_hint"
+        android:textSize="12sp"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/text_grey"
+        android:textAlignment="center"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNo"
+        style="@style/Button.Primary.Outline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/request_a_payout"
+        app:layout_constraintTop_toBottomOf="@id/tv_hint"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btnYes"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnYes"
+        style="@style/Button.RedesignPrimary"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/request_a_payout"
+        app:layout_constraintTop_toTopOf="@id/btnNo"
+        app:layout_constraintBottom_toBottomOf="@id/btnNo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/btnNo"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
