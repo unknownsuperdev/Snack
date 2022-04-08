@@ -1,13 +1,10 @@
 package app.snack.ui.main.screens.settings
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
-import app.snack.BuildConfig
 import app.snack.base.BindingFragment
 import app.snack.databinding.FragmentSettingsBinding
 import app.snack.service.SnackService
@@ -17,7 +14,6 @@ import app.snack.utils.extensions.onCheck
 import app.snack.utils.extensions.onClick
 import app.snack.utils.extensions.showAlertDisableMobileData
 import app.snack.utils.extensions.showAlertLogout
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.Scopes
 

@@ -145,4 +145,6 @@
     <string name="payout_completed_on">Payout: %1$.1f%% complete</string>
     <string name="the_stats_is_updated_hourly">The stats is updated hourly</string>
     <string name="password_mismatch">Password mismatch, check the spelling</string>
+
+    <string name="privacy_confirmation_button_text">Я согласен с Условиями использования</string>
 </resources>

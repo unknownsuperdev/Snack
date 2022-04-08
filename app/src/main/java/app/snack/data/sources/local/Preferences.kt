@@ -1,17 +1,15 @@
 package app.snack.data.sources.local
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.core.content.edit
 import app.snack.data.sources.local.Preferences.Constants.PREF_AUTH_CREDENTIALS
 import app.snack.data.sources.local.Preferences.Constants.PREF_BONUS_GIVEN
 import app.snack.data.sources.local.Preferences.Constants.PREF_FIRST_LAUNCH
 import app.snack.data.sources.local.Preferences.Constants.PREF_NATIVE_AUTH
+import app.snack.data.sources.local.Preferences.Constants.PREF_SHOW_PRIVACY_CONFIRMATION_SCREEN
 import app.snack.data.sources.local.Preferences.Constants.PREF_TOKEN
 import app.snack.model.SnackCredentials
-import app.snack.model.request.UserRequest
 import com.google.gson.Gson
-import okhttp3.Credentials
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -23,6 +21,7 @@ class Preferences @Inject constructor(
         private const val PREFERENCES_NAME = "snack-preferences"
         const val PREF_TOKEN = "$PREFERENCES_NAME-PREF_TOKEN"
         const val PREF_FIRST_LAUNCH = "$PREFERENCES_NAME-PREF_FIRST_LAUNCH"
+        const val PREF_SHOW_PRIVACY_CONFIRMATION_SCREEN = "$PREFERENCES_NAME-PREF_SHOW_TERMS_CONFIRMATION_SCREEN"
         const val PREF_NATIVE_AUTH = "$PREFERENCES_NAME-PREF_NATIVE_AUTH"
         const val PREF_AUTH_CREDENTIALS = "$PREFERENCES_NAME-PREF_AUTH_CREDENTIALS"
         const val PREF_BONUS_GIVEN = "$PREFERENCES_NAME-PREF_BONUS_GIVEN"
@@ -132,6 +131,12 @@ class Preferences @Inject constructor(
             preferences.edit { putBoolean(PREF_FIRST_LAUNCH, value) }
         }
         get() = preferences.getBoolean(PREF_FIRST_LAUNCH, true)
+
+    var showPrivacyConfirmationScreen: Boolean
+        set(value) {
+            preferences.edit { putBoolean(PREF_SHOW_PRIVACY_CONFIRMATION_SCREEN, value) }
+        }
+        get() = preferences.getBoolean(PREF_SHOW_PRIVACY_CONFIRMATION_SCREEN, true)
 
 
     var isBonusGiven: Boolean

@@ -43,4 +43,10 @@
 
     <color name="button_text">#26175F</color>
 
+    <color name="button_privacy_confirmation_background">#8B6FE2</color>
+    <color name="button_privacy_confirmation_background_pressed_state">#B38B6FE2</color>
+
+    <color name="privacy_confirmation_bottom_gradient_start">#FBFBFB</color>
+    <color name="privacy_confirmation_bottom_gradient_end">#00FBFBFB</color>
+
 </resources>

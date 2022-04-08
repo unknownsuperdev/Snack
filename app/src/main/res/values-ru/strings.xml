@@ -143,4 +143,6 @@
     <string name="payout_completed_on">Выплата на %1$.1f%% доступна</string>
     <string name="the_stats_is_updated_hourly">Обновление раз в час</string>
     <string name="password_mismatch">Пароль и его подтверждение не совпадают</string>
+
+    <string name="privacy_confirmation_button_text">Я согласен с Условиями использования</string>
 </resources>
