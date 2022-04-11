@@ -144,5 +144,5 @@
     <string name="the_stats_is_updated_hourly">Обновление раз в час</string>
     <string name="password_mismatch">Пароль и его подтверждение не совпадают</string>
 
-    <string name="privacy_confirmation_button_text">Я согласен с Условиями использования</string>
+    <string name="privacy_confirmation_button_text">Принять</string>
 </resources>
