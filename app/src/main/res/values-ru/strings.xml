@@ -146,4 +146,12 @@
     <string name="setup_snack_header_text">Настроить Snack</string>
     <string name="setup_snack_title">Использовать мобильные данные</string>
     <string name="setup_snack_hint">Если выключить, Snack будет работать только по Wi-Fi</string>
+    <string name="setup_snack_setup_limit_text">Установить лимит мобильных данных</string>
+    <string name="setup_snack_setup_limit_text_hint">Установить сколько мобильных данных Snack может использовать каждый месяц</string>
+    <string name="setup_snack_limit_mobile_data_text">Установить лимит мобильных данных</string>
+    <string name="setup_snack_limit_mobile_data_text_hint">Применяется в течение каждого месяца</string>
+    <string name="setup_snack_statistic_hint">Статистика использования в приложении Android может иметь расхождения</string>
+    <string name="setup_snack_done_button">Выполнено</string>
+    <string name="setup_snack_yes_button">Да</string>
+    <string name="setup_snack_no_button">Нет</string>
 </resources>

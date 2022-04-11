@@ -28,7 +28,8 @@ class OnboardingFragment : BindingFragment<FragmentOnboardingBinding, Onboarding
             binding.btnNext.text = if (position == 3) getString(R.string.sign_in) else getString(R.string.next)
 
             if (position == 3) {
-                binding.btnNext.onClick { showScreen(Screen.LOGIN) }
+//                binding.btnNext.onClick { showScreen(Screen.LOGIN) }
+                binding.btnNext.onClick { showScreen(Screen.SETUPSNACK) }
             } else {
                 binding.btnNext.onClick { binding.pager.nextPage() }
             }

@@ -34,6 +34,7 @@ import app.snack.ui.main.screens.settings.screens.privacy_policy.SettingsPrivacy
 import app.snack.ui.main.screens.settings.screens.support.SettingsSupportFragment
 import app.snack.ui.main.screens.settings.screens.terms.SettingsTermsFragment
 import app.snack.ui.onboarding.OnboardingFragment
+import app.snack.ui.setupSnack.SetupSnackFragment
 import app.snack.utils.NavAction
 import app.snack.utils.Navigator
 import app.snack.utils.Screen
@@ -114,6 +115,11 @@ abstract class BindingFragment<out VB : ViewBinding, out VM : BaseViewModel> : F
         when (screen) {
             Screen.ONBOARDING -> showFragment(
                 fragment = OnboardingFragment(),
+                animEnter = R.anim.slide_in_bottom,
+                animExit = R.anim.slide_out_bottom,
+            )
+            Screen.SETUPSNACK -> showFragment(
+                fragment = SetupSnackFragment(),
                 animEnter = R.anim.slide_in_bottom,
                 animExit = R.anim.slide_out_bottom,
             )

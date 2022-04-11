@@ -3,86 +3,259 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_main"
     android:clickable="true"
     android:focusable="true">
 
-    <TextView
-        android:id="@+id/tv_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="@string/setup_snack_header_text"
-        android:fontFamily="@font/inter_medium"
-        android:textColor="@color/text_normal"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="17dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-
-    <ImageView
-        android:id="@+id/iv_cookie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/setup_snack_cookie"
-        app:layout_constraintTop_toBottomOf="@id/tv_header"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/setup_snack_title"
-        android:fontFamily="@font/inter_medium"
-        android:textColor="@color/text_black"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/iv_cookie"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <TextView
-        android:id="@+id/tv_hint"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="6dp"
-        android:text="@string/setup_snack_hint"
-        android:textSize="12sp"
-        android:fontFamily="@font/inter_medium"
-        android:textColor="@color/text_grey"
-        android:textAlignment="center"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnNo"
-        style="@style/Button.Primary.Outline"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="4dp"
-        android:text="@string/request_a_payout"
-        app:layout_constraintTop_toBottomOf="@id/tv_hint"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/btnYes"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnYes"
-        style="@style/Button.RedesignPrimary"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/request_a_payout"
-        app:layout_constraintTop_toTopOf="@id/btnNo"
-        app:layout_constraintBottom_toBottomOf="@id/btnNo"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/btnNo"/>
+        app:layout_constraintBottom_toTopOf="@id/cl_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/setup_snack_header_text"
+                android:textColor="@color/text_normal"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_cookie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/setup_snack_cookie"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_header" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/setup_snack_title"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_cookie" />
+
+            <TextView
+                android:id="@+id/tv_hint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/setup_snack_hint"
+                android:textAlignment="center"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNo"
+                style="@style/Button.Primary.RedesignOutlineCheckable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/setup_snack_no_button"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintEnd_toStartOf="@id/btnYes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_hint" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnYes"
+                style="@style/Button.Primary.RedesignOutlineCheckable"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/setup_snack_yes_button"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintBottom_toBottomOf="@id/btnNo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnNo"
+                app:layout_constraintTop_toTopOf="@id/btnNo" />
+
+            <ImageView
+                android:id="@+id/divider_1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnNo" />
+
+            <TextView
+                android:id="@+id/tv_setup_limit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/setup_snack_setup_limit_text"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/swc_setup_limit"
+                app:layout_constraintStart_toStartOf="@id/btnNo"
+                app:layout_constraintTop_toBottomOf="@id/divider_1" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swc_setup_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/switch_ios_selector"
+                app:layout_constraintBottom_toBottomOf="@id/tv_setup_limit"
+                app:layout_constraintRight_toRightOf="@id/btnYes"
+                app:layout_constraintTop_toTopOf="@id/tv_setup_limit"
+                app:track="@drawable/switch_ios_track" />
+
+            <TextView
+                android:id="@+id/tv_setup_limit_hint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/setup_snack_setup_limit_text_hint"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/tv_setup_limit"
+                app:layout_constraintStart_toStartOf="@id/tv_setup_limit"
+                app:layout_constraintTop_toBottomOf="@id/tv_setup_limit" />
+
+            <ImageView
+                android:id="@+id/divider_2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_setup_limit_hint" />
+
+            <TextView
+                android:id="@+id/tv_limit_mobile_data"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/setup_snack_limit_mobile_data_text"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/btnYes"
+                app:layout_constraintStart_toStartOf="@id/btnNo"
+                app:layout_constraintTop_toBottomOf="@id/divider_2" />
+
+            <TextView
+                android:id="@+id/tv_limit_mobile_data_hint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/setup_snack_limit_mobile_data_text_hint"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/tv_limit_mobile_data"
+                app:layout_constraintStart_toStartOf="@id/tv_limit_mobile_data"
+                app:layout_constraintTop_toBottomOf="@id/tv_limit_mobile_data" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_mobile_data_limit"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/setup_snack_edit_text_bg"
+                app:layout_constraintEnd_toStartOf="@id/et_mobile_data_limit_type"
+                app:layout_constraintStart_toStartOf="@id/tv_limit_mobile_data_hint"
+                app:layout_constraintTop_toBottomOf="@id/tv_limit_mobile_data_hint" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_mobile_data_limit_type"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/setup_snack_edit_text_bg"
+                android:focusable="false"
+                android:fontFamily="@font/inter_regular"
+                android:text="GB"
+                android:textAlignment="center"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintEnd_toEndOf="@id/btnYes"
+                app:layout_constraintTop_toBottomOf="@id/tv_limit_mobile_data_hint" />
+
+            <TextView
+                android:id="@+id/tv_statistic_hint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/setup_snack_statistic_hint"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/btnYes"
+                app:layout_constraintStart_toStartOf="@id/btnNo"
+                app:layout_constraintTop_toBottomOf="@id/et_mobile_data_limit" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Button.RedesignPrimary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingTop="8dp"
+            android:text="@string/setup_snack_done_button"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

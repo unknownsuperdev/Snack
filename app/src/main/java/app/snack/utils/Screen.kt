@@ -2,6 +2,7 @@ package app.snack.utils
 
 enum class Screen {
     ONBOARDING,
+    SETUPSNACK,
 
     LOGIN,
 
