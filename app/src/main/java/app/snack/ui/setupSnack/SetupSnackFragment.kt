@@ -1,20 +1,27 @@
 package app.snack.ui.setupSnack
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
 import app.snack.R
 import app.snack.base.BindingFragment
 import app.snack.databinding.FragmentSetupSnackBinding
+import app.snack.utils.Screen
 import app.snack.utils.enums.SetupSnackCheckableButtonsStateEnum
 import app.snack.utils.extensions.enabled
+import app.snack.utils.extensions.onClick
+import app.snack.utils.hideKeyboard
 import com.zackratos.ultimatebarx.ultimatebarx.statusBar
+
 
 class SetupSnackFragment : BindingFragment<FragmentSetupSnackBinding, SetupSnackViewModel>() {
 
@@ -28,7 +35,7 @@ class SetupSnackFragment : BindingFragment<FragmentSetupSnackBinding, SetupSnack
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        activity?.window?.statusBarColor = activity?.getColor(R.color.white) ?: 0
+        activity?.window?.statusBarColor = activity?.getColor(R.color.bg_main) ?: 0
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -47,6 +54,21 @@ class SetupSnackFragment : BindingFragment<FragmentSetupSnackBinding, SetupSnack
             }
             swcSetupLimit.setOnCheckedChangeListener { buttonView, isChecked ->
                 onSetupLimitSwitchButtonChecked(isChecked)
+                viewModel.isDataLimitSwitchButtonChecked = isChecked
+            }
+            etMobileDataLimit.addTextChangedListener {
+                val value: String = it.toString()
+                val finalValue = value.toInt()
+                viewModel.mobileDataUsageLimit = finalValue
+            }
+            btnDone.onClick {
+                viewModel.setDataLimit()
+                showScreen(Screen.LOGIN)
+            }
+            etMobileDataLimit.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {
+                    view?.hideKeyboard()
+                }
             }
         }
     }
@@ -68,6 +90,22 @@ class SetupSnackFragment : BindingFragment<FragmentSetupSnackBinding, SetupSnack
                         it
                     )
                 }
+            } else {
+                tvStatisticHint.visibility = GONE
+                etMobileDataLimitType.visibility = GONE
+                etMobileDataLimit.visibility = GONE
+                tvLimitMobileDataHint.visibility = GONE
+                activity?.resources?.getColor(R.color.text_normal, requireActivity().theme)?.let {
+                    tvSetupLimit.setTextColor(
+                        it
+                    )
+                }
+                activity?.resources?.getColor(R.color.text_grey, requireActivity().theme)?.let {
+                    tvLimitMobileData.setTextColor(
+                        it
+                    )
+                }
+
             }
         }
     }

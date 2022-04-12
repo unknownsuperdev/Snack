@@ -39,7 +39,7 @@ class SnackService: Service() {
             if(intent.action == SERVICE_ACTION) {
 
                 val intent1 = Intent(context, AppActivity::class.java)
-                val pendingIntent = PendingIntent.getActivity(context, 0, intent1, 0)
+                val pendingIntent = PendingIntent.getActivity(context, 0, intent1, PendingIntent.FLAG_MUTABLE)
 
                 val notification = NotificationCompat
                     .Builder(context, CHANNEL_ID)

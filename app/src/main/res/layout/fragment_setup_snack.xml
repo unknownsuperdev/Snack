@@ -197,6 +197,8 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
+                android:inputType="number"
+                android:paddingStart="8dp"
                 android:background="@drawable/setup_snack_edit_text_bg"
                 android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@id/et_mobile_data_limit_type"

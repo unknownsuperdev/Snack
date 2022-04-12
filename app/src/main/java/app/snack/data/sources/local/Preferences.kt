@@ -1,7 +1,6 @@
 package app.snack.data.sources.local
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.core.content.edit
 import app.snack.data.sources.local.Preferences.Constants.PREF_AUTH_CREDENTIALS
 import app.snack.data.sources.local.Preferences.Constants.PREF_BONUS_GIVEN
@@ -9,10 +8,7 @@ import app.snack.data.sources.local.Preferences.Constants.PREF_FIRST_LAUNCH
 import app.snack.data.sources.local.Preferences.Constants.PREF_NATIVE_AUTH
 import app.snack.data.sources.local.Preferences.Constants.PREF_TOKEN
 import app.snack.model.SnackCredentials
-import app.snack.model.request.UserRequest
 import com.google.gson.Gson
-import okhttp3.Credentials
-import java.lang.Exception
 import javax.inject.Inject
 
 class Preferences @Inject constructor(
@@ -28,10 +24,12 @@ class Preferences @Inject constructor(
         const val PREF_BONUS_GIVEN = "$PREFERENCES_NAME-PREF_BONUS_GIVEN"
         const val PREF_DEVICE_REGISTERED = "$PREFERENCES_NAME-PREF_DEVICE_REGISTERED"
         const val PREF_ALLOW_MOBILE_DATA = "$PREFERENCES_NAME-PREF_ALLOW_MOBILE_DATA"
-        const val PREF_STOP_SHARING_ON_BATTERY_LOW = "$PREFERENCES_NAME-PREF_STOP_SHARING_ON_BATTERY_LOW"
+        const val PREF_STOP_SHARING_ON_BATTERY_LOW =
+            "$PREFERENCES_NAME-PREF_STOP_SHARING_ON_BATTERY_LOW"
         const val PREF_TRAFFIC_LIMIT = "$PREFERENCES_NAME-PREF_TRAFFIC_LIMIT"
         const val PREF_LAST_SHARE_BUTTON_STATE = "$PREFERENCES_NAME-PREF_LAST_SHARE_BUTTON_STATE"
         const val PREF_CONFIRMATION_SEND = "$PREFERENCES_NAME-PREF_CONFIRMATION_SEND"
+        const val PREF_MOBILE_DATA_USAGE_LIMIT = "$PREFERENCES_NAME-PREF_MOBILE_DATA_USAGE_LIMIT"
     }
 
     var isMobileAllowed: Boolean
@@ -151,5 +149,11 @@ class Preferences @Inject constructor(
             preferences.edit { putBoolean(Constants.PREF_DEVICE_REGISTERED, value) }
         }
         get() = preferences.getBoolean(Constants.PREF_DEVICE_REGISTERED, false)
+
+    var mobileDataUsageLimit: Int?
+        set(value) {
+            preferences.edit { value?.let { putInt(Constants.PREF_MOBILE_DATA_USAGE_LIMIT, it) } }
+        }
+        get() = preferences.getInt(Constants.PREF_MOBILE_DATA_USAGE_LIMIT, 0)
 
 }
