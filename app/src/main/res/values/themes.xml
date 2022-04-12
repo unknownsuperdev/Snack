@@ -152,4 +152,8 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <style name="InterMediumTextAppearance">
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
 </resources>
