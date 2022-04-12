@@ -3,14 +3,17 @@ package app.snack.ui.setupSnack
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
 import app.snack.R
 import app.snack.base.BindingFragment
 import app.snack.databinding.FragmentSetupSnackBinding
 import app.snack.utils.enums.SetupSnackCheckableButtonsStateEnum
+import app.snack.utils.extensions.enabled
 import com.zackratos.ultimatebarx.ultimatebarx.statusBar
 
 class SetupSnackFragment : BindingFragment<FragmentSetupSnackBinding, SetupSnackViewModel>() {
@@ -42,6 +45,30 @@ class SetupSnackFragment : BindingFragment<FragmentSetupSnackBinding, SetupSnack
             btnYes.setOnClickListener {
                 viewModel.onButtonYesClicked()
             }
+            swcSetupLimit.setOnCheckedChangeListener { buttonView, isChecked ->
+                onSetupLimitSwitchButtonChecked(isChecked)
+            }
+        }
+    }
+
+    private fun onSetupLimitSwitchButtonChecked(checked: Boolean) {
+        with(binding) {
+            if (checked) {
+                tvStatisticHint.visibility = VISIBLE
+                etMobileDataLimitType.visibility = VISIBLE
+                etMobileDataLimit.visibility = VISIBLE
+                tvLimitMobileDataHint.visibility = VISIBLE
+                activity?.resources?.getColor(R.color.text_normal, requireActivity().theme)?.let {
+                    tvSetupLimit.setTextColor(
+                        it
+                    )
+                }
+                activity?.resources?.getColor(R.color.text_normal, requireActivity().theme)?.let {
+                    tvLimitMobileData.setTextColor(
+                        it
+                    )
+                }
+            }
         }
     }
 
@@ -63,10 +90,53 @@ class SetupSnackFragment : BindingFragment<FragmentSetupSnackBinding, SetupSnack
         }
     }
 
+    private fun onCheckableButtonsUnchecked() {
+        with(binding) {
+            btnYes.isSelected = false
+            btnNo.isSelected = false
+            swcSetupLimit.visibility = GONE
+            tvSetupLimitHint.visibility = GONE
+            tvLimitMobileDataHint.visibility = GONE
+            etMobileDataLimit.visibility = GONE
+            etMobileDataLimitType.visibility = GONE
+            tvStatisticHint.visibility = GONE
+            btnDone.enabled(false)
+            swcSetupLimit.isChecked = false
+            activity?.resources?.getColor(R.color.text_grey, requireActivity().theme)?.let {
+                tvSetupLimit.setTextColor(
+                    it
+                )
+            }
+            activity?.resources?.getColor(R.color.text_grey, requireActivity().theme)?.let {
+                tvLimitMobileData.setTextColor(
+                    it
+                )
+            }
+        }
+    }
+
     private fun onNoButtonChecked() {
         with(binding) {
             btnYes.isSelected = false
             btnNo.isSelected = true
+            swcSetupLimit.visibility = GONE
+            tvSetupLimitHint.visibility = GONE
+            tvLimitMobileDataHint.visibility = GONE
+            etMobileDataLimit.visibility = GONE
+            etMobileDataLimitType.visibility = GONE
+            tvStatisticHint.visibility = GONE
+            btnDone.enabled(true)
+            swcSetupLimit.isChecked = false
+            activity?.resources?.getColor(R.color.text_grey, requireActivity().theme)?.let {
+                tvSetupLimit.setTextColor(
+                    it
+                )
+            }
+            activity?.resources?.getColor(R.color.text_grey, requireActivity().theme)?.let {
+                tvLimitMobileData.setTextColor(
+                    it
+                )
+            }
         }
     }
 
@@ -74,13 +144,23 @@ class SetupSnackFragment : BindingFragment<FragmentSetupSnackBinding, SetupSnack
         with(binding) {
             btnYes.isSelected = true
             btnNo.isSelected = false
-        }
-    }
-
-    private fun onCheckableButtonsUnchecked() {
-        with(binding) {
-            btnYes.isSelected = false
-            btnNo.isSelected = false
+            swcSetupLimit.visibility = VISIBLE
+            tvSetupLimitHint.visibility = VISIBLE
+            tvLimitMobileDataHint.visibility = GONE
+            etMobileDataLimit.visibility = GONE
+            etMobileDataLimitType.visibility = GONE
+            tvStatisticHint.visibility = GONE
+            btnDone.enabled(true)
+            activity?.resources?.getColor(R.color.text_black, requireActivity().theme)?.let {
+                tvSetupLimit.setTextColor(
+                    it
+                )
+            }
+            activity?.resources?.getColor(R.color.text_grey, requireActivity().theme)?.let {
+                tvLimitMobileData.setTextColor(
+                    it
+                )
+            }
         }
     }
 }

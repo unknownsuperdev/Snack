@@ -131,6 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:thumb="@drawable/switch_ios_selector"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/tv_setup_limit"
                 app:layout_constraintRight_toRightOf="@id/btnYes"
                 app:layout_constraintTop_toTopOf="@id/tv_setup_limit"
@@ -146,7 +147,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@id/tv_setup_limit"
                 app:layout_constraintStart_toStartOf="@id/tv_setup_limit"
                 app:layout_constraintTop_toBottomOf="@id/tv_setup_limit" />
@@ -185,6 +186,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@id/tv_limit_mobile_data"
                 app:layout_constraintStart_toStartOf="@id/tv_limit_mobile_data"
                 app:layout_constraintTop_toBottomOf="@id/tv_limit_mobile_data" />
@@ -196,6 +198,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
                 android:background="@drawable/setup_snack_edit_text_bg"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@id/et_mobile_data_limit_type"
                 app:layout_constraintStart_toStartOf="@id/tv_limit_mobile_data_hint"
                 app:layout_constraintTop_toBottomOf="@id/tv_limit_mobile_data_hint" />
@@ -212,6 +215,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/sp_14"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@id/btnYes"
                 app:layout_constraintTop_toBottomOf="@id/tv_limit_mobile_data_hint" />
 
@@ -225,6 +229,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@id/btnYes"
                 app:layout_constraintStart_toStartOf="@id/btnNo"
                 app:layout_constraintTop_toBottomOf="@id/et_mobile_data_limit" />
@@ -242,19 +247,24 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_done"
             style="@style/Button.RedesignPrimary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:enabled="false"
             android:fontFamily="@font/poppins_medium"
             android:paddingTop="8dp"
             android:text="@string/setup_snack_done_button"
+            android:textColor="@color/button_text_enable_disable_state_color"
             android:textSize="@dimen/sp_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
