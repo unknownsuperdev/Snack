@@ -25,37 +25,41 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             delay(1000)
 
-            if (repository.isFirstLaunch) {
-                repository.isFirstLaunch = false
-                navigate(NavAction.Show(Screen.ONBOARDING))
+            if (repository.showPrivacyConfirmationScreen) {
+                navigate(NavAction.Show(Screen.PRIVACY_CONFIRMATION))
             } else {
-                val credentials = preferences.credentials
-
-
-                if(preferences.isNativeAuthentication && credentials != null) {
-                    when (repository.signIn(credentials.login, credentials.password)) {
-                        is SignInResult.Success -> {
-                            navigate(NavAction.Show(Screen.MAIN))
-                        }
-                        is SignInResult.Failure -> navigate(NavAction.Show(Screen.LOGIN))
-                    }
+                if (repository.isFirstLaunch) {
+                    repository.isFirstLaunch = false
+                    navigate(NavAction.Show(Screen.ONBOARDING))
                 } else {
+                    val credentials = preferences.credentials
 
-                    preferences.token?.let {
-                        // try to check if token is valid by fetching profile
-                        when(val result = repository.fetchProfile(UserRequest.Profile())) {
-                            is ProfileResult.Success -> {
+
+                    if (preferences.isNativeAuthentication && credentials != null) {
+                        when (repository.signIn(credentials.login, credentials.password)) {
+                            is SignInResult.Success -> {
                                 navigate(NavAction.Show(Screen.MAIN))
                             }
-                            is ProfileResult.Failure -> {
-                                // token is not valid
-                                navigate(NavAction.Show(Screen.LOGIN))
-                            }
+                            is SignInResult.Failure -> navigate(NavAction.Show(Screen.LOGIN))
                         }
-                    } ?: run {
-                        navigate(NavAction.Show(Screen.LOGIN))
-                    }
+                    } else {
 
+                        preferences.token?.let {
+                            // try to check if token is valid by fetching profile
+                            when (val result = repository.fetchProfile(UserRequest.Profile())) {
+                                is ProfileResult.Success -> {
+                                    navigate(NavAction.Show(Screen.MAIN))
+                                }
+                                is ProfileResult.Failure -> {
+                                    // token is not valid
+                                    navigate(NavAction.Show(Screen.LOGIN))
+                                }
+                            }
+                        } ?: run {
+                            navigate(NavAction.Show(Screen.LOGIN))
+                        }
+
+                    }
                 }
             }
         }

@@ -156,4 +156,6 @@
     <string name="setup_snack_done_button">Выполнено</string>
     <string name="setup_snack_yes_button">Да</string>
     <string name="setup_snack_no_button">Нет</string>
+
+    <string name="privacy_confirmation_button_text">Accept</string>
 </resources>

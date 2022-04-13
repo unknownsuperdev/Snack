@@ -1,7 +1,7 @@
 package app.snack.ui.login.screens.sign_in
 
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.WindowManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding

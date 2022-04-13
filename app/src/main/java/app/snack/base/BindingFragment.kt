@@ -33,14 +33,13 @@ import app.snack.ui.main.screens.settings.screens.limit_traffic.SettingsLimitTra
 import app.snack.ui.main.screens.settings.screens.privacy_policy.SettingsPrivacyPolicyFragment
 import app.snack.ui.main.screens.settings.screens.support.SettingsSupportFragment
 import app.snack.ui.main.screens.settings.screens.terms.SettingsTermsFragment
+import app.snack.ui.main.screens.settings.screens.termsConfirmation.PrivacyConfirmationFragment
 import app.snack.ui.onboarding.OnboardingFragment
 import app.snack.ui.setupSnack.SetupSnackFragment
 import app.snack.utils.NavAction
 import app.snack.utils.Navigator
 import app.snack.utils.Screen
 import app.snack.utils.extensions.launchWhenStarted
-import app.snack.utils.extensions.loader
-import app.snack.utils.extensions.show
 import app.snack.utils.extensions.showDialogForgotPasswordDone
 import kotlinx.coroutines.flow.onEach
 import splitties.toast.toast
@@ -145,6 +144,11 @@ abstract class BindingFragment<out VB : ViewBinding, out VM : BaseViewModel> : F
             Screen.SETTINGS -> showFragment(
                 fm = childFragmentManager,
                 fragment = SettingsFragment()
+            )
+            Screen.PRIVACY_CONFIRMATION -> showFragment(
+                fragment = PrivacyConfirmationFragment(),
+                animEnter = R.anim.slide_in_bottom,
+                animExit = R.anim.slide_out_bottom,
             )
         }
     }

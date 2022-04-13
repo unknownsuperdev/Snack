@@ -1,12 +1,10 @@
 package app.snack.data.repository
 
-import android.util.Log
 import app.snack.data.sources.local.Preferences
 import app.snack.data.sources.remote.SnackAPI
 import app.snack.model.Error
 import app.snack.model.SnackCredentials
 import app.snack.model.request.*
-import app.snack.model.response.ValidationResult
 import app.snack.model.result.*
 import javax.inject.Inject
 
@@ -15,6 +13,8 @@ interface Repository {
 
     val token: String?
     var isFirstLaunch: Boolean
+
+    var showPrivacyConfirmationScreen: Boolean
 
     suspend fun signIn(email: String, password: String): SignInResult
     suspend fun signInGoogle(token: String): SignInResult
@@ -54,6 +54,12 @@ class SnackRepository @Inject constructor(
             preferences.isFirstLaunch = value
         }
         get() = preferences.isFirstLaunch
+
+    override var showPrivacyConfirmationScreen: Boolean
+        set(value) {
+            preferences.showPrivacyConfirmationScreen = value
+        }
+        get() = preferences.showPrivacyConfirmationScreen
 
     // region Auth
     override suspend fun signIn(email: String, password: String): SignInResult = try {
@@ -230,7 +236,7 @@ class SnackRepository @Inject constructor(
             when (response.isSuccessful) {
                 true -> {
                     val result = response.body()!!
-                    if(result.data.validation) {
+                    if (result.data.validation) {
                         Result.Success
                     } else {
                         Result.Failure()
@@ -294,7 +300,7 @@ class SnackRepository @Inject constructor(
             when (response.isSuccessful) {
                 true -> {
                     val result = response.body()!!
-                    if(result.data.validation) {
+                    if (result.data.validation) {
                         Result.Success
                     } else {
                         Result.Failure()
