@@ -1,20 +1,17 @@
 package app.snack.ui.main.screens.dashboard
 
 import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
-import android.app.ActivityManager
-import android.content.Context
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.ContextCompat.startForegroundService
-import androidx.core.text.parseAsHtml
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import app.snack.PowerSavingModeActivity
 import app.snack.R
@@ -23,9 +20,6 @@ import app.snack.databinding.FragmentDashboardBinding
 import app.snack.service.SnackService
 import app.snack.ui.main.SharedViewModel
 import app.snack.utils.ConnectionLiveData
-import android.content.ActivityNotFoundException
-import android.view.animation.AccelerateInterpolator
-import androidx.lifecycle.lifecycleScope
 import app.snack.utils.extensions.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -132,8 +126,9 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
 
                 binding.tvEarned.text = String.format("%.3f", it.currentBalance.dollar)
                 binding.tvGathered.text = resources.getString(R.string.gathered_on_this_device, it.trafficPerWeek.readableFormat())
-                binding.tvGatheredToday.text = String.format("%.0 MB", it.trafficPerToday.toMB(2))
-                binding.tvEarnedToday.text = String.format("%.3f$", it.moneyEarnedPerToday.cent.toUsd(2))
+                binding.tvGatheredToday.text =  it.trafficPerToday.toMB(2)
+//                binding.tvEarnedToday.text = String.format("%.3f$", it.moneyEarnedPerToday.cent.toUsd(2))
+                binding.tvEarnedToday.text = it.moneyEarnedPerToday.cent.toUsd(2)
             }
         }
 

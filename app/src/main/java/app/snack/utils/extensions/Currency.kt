@@ -10,4 +10,4 @@ fun Float.csToUsd(): Double {
     return DecimalFormat("#,##0.#").format(this / 1000).toDouble()
 }
 
-fun Float.toUsd(decimals: Int = 2) = "%.${decimals}f".format(Locale.getDefault(), (this.toDouble()/1000F))
+fun Float.toUsd(decimals: Int = 2) = "$%.${decimals}f".format(Locale.getDefault(), (this.toDouble()/100F))
