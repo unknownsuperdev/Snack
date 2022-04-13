@@ -23,12 +23,10 @@ import app.snack.databinding.FragmentDashboardBinding
 import app.snack.service.SnackService
 import app.snack.ui.main.SharedViewModel
 import app.snack.utils.ConnectionLiveData
-import app.snack.utils.extensions.readableFormat
-import app.snack.utils.extensions.showAlertSignUpBonus
-import app.snack.utils.extensions.showNewVersion
 import android.content.ActivityNotFoundException
 import android.view.animation.AccelerateInterpolator
 import androidx.lifecycle.lifecycleScope
+import app.snack.utils.extensions.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -134,8 +132,8 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
 
                 binding.tvEarned.text = String.format("%.3f", it.currentBalance.dollar)
                 binding.tvGathered.text = resources.getString(R.string.gathered_on_this_device, it.trafficPerWeek.readableFormat())
-                binding.tvGatheredToday.text = it.trafficPerToday.readableFormat()
-                binding.tvEarnedToday.text = String.format("%.3f¢", it.moneyEarnedPerToday.cent)
+                binding.tvGatheredToday.text = String.format("%.0 MB", it.trafficPerToday.toMB(2))
+                binding.tvEarnedToday.text = String.format("%.3f$", it.moneyEarnedPerToday.cent.toUsd(2))
             }
         }
 

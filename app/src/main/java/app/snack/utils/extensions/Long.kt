@@ -1,6 +1,7 @@
 package app.snack.utils.extensions
 
 import java.text.DecimalFormat
+import java.util.*
 
 fun Long.readableFormat(unitRequire: Boolean = true): String {
     if (this <= 0)
@@ -13,3 +14,5 @@ fun Long.readableFormat(unitRequire: Boolean = true): String {
     return DecimalFormat("#,##0.#").format(this / Math.pow(1024.0, digitGroups.toDouble()))
         .toString() + " " + if (unitRequire) (units[digitGroups]) else ""
 }
+
+fun Long.toMB(decimals: Int = 2) = "%.${decimals}f MB".format(Locale.getDefault(), (this.toDouble()/1024F/1024F))

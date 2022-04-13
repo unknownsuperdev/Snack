@@ -42,7 +42,7 @@
     <string name="email_address">Почта</string>
     <string name="earned_today">Заработано сегодня</string>
     <string name="dim_screen">Выберите, чтобы затемнить экран и сэкономить заряд батареи. Вы можете выключить режим энергосбережения в любой момент.</string>
-    <string name="_0_0_mb">0.0 Mb</string>
+    <string name="_0_0_mb">0.00 Mb</string>
     <string name="start_sharing_traffic_to_earn_more_money">Начните делиться трафиком, чтобы заработать еще больше!</string>
     <string name="power_saving">Режим энергосбережения включен.\nЧтобы выключить его, коснитесь экрана.</string>
     <string name="turn_off">Выключить</string>
