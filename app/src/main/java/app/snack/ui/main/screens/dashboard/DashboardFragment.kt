@@ -1,21 +1,22 @@
 package app.snack.ui.main.screens.dashboard
 
 import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
-import android.app.ActivityManager
-import android.content.Context
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.ContextCompat.startForegroundService
-import androidx.core.text.parseAsHtml
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
+import androidx.work.OneTimeWorkRequest
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
 import app.snack.PowerSavingModeActivity
 import app.snack.R
 import app.snack.base.BindingFragment
@@ -26,11 +27,10 @@ import app.snack.utils.ConnectionLiveData
 import app.snack.utils.extensions.readableFormat
 import app.snack.utils.extensions.showAlertSignUpBonus
 import app.snack.utils.extensions.showNewVersion
-import android.content.ActivityNotFoundException
-import android.view.animation.AccelerateInterpolator
-import androidx.lifecycle.lifecycleScope
+import app.snack.workManager.TrafficWorker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import splitties.init.appCtx
 
 
 class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardViewModel>() {
@@ -46,21 +46,22 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(!viewModel.isBonusGiven) {
+        if (!viewModel.isBonusGiven) {
             viewModel.checkNegativeTransactionsWithDelay().observe(viewLifecycleOwner) {
-                if(it) {
+                if (it) {
                     context?.showAlertSignUpBonus({
-                        viewModel.addNegativeTransaction().observe(viewLifecycleOwner) { transactionAdded ->
-                            if(transactionAdded) {
-                                if(binding.btnShareTraffic.isChecked.not()) {
-                                    startAnimation()
-                                    toggleForegroundServiceState(true)
-                                    viewModel.reportTrafficSharingEnabled()
+                        viewModel.addNegativeTransaction()
+                            .observe(viewLifecycleOwner) { transactionAdded ->
+                                if (transactionAdded) {
+                                    if (binding.btnShareTraffic.isChecked.not()) {
+                                        startAnimation()
+                                        toggleForegroundServiceState(true)
+                                        viewModel.reportTrafficSharingEnabled()
+                                    }
+                                    sharedViewModel.fetchProfile()
                                 }
-                                sharedViewModel.fetchProfile()
+                                viewModel.setBonusGiven()
                             }
-                            viewModel.setBonusGiven()
-                        }
                     }, {
                         viewModel.setBonusGiven()
                     })
@@ -73,11 +74,15 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
     override fun setupUI() {
         // binding.tvGathered.text = "Gathered on this device: <b>0.0 B</b>".parseAsHtml()
 
-        if(viewModel.lastShareButtonState) {
+        if (viewModel.lastShareButtonState) {
             // viewModel.reportTrafficSharingEnabled()
-            toggleForegroundServiceState(true)
+            binding.btnShareTraffic.isChecked = true
+            viewModel.lastShareButtonState = true
+//            toggleForegroundServiceState(true)
         } else {
-            toggleForegroundServiceState(false)
+//            toggleForegroundServiceState(false)
+            viewModel.lastShareButtonState = false
+            binding.btnShareTraffic.isChecked = false
         }
 
         binding.switchPowerSaving.setOnCheckedChangeListener { _, isChecked ->
@@ -93,16 +98,31 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
 
 
         binding.btnShareTraffic.setOnClickListener {
-            if(binding.btnShareTraffic.isChecked) {
+            val uploadTrafficWorkRequest: WorkRequest =
+                OneTimeWorkRequestBuilder<TrafficWorker>()
+                    .addTag("TrafficWorker")
+                    .build()
+            val workManager = WorkManager.getInstance(appCtx)
+//            val uploadTrafficWorkRequest =
+//                OneTimeWorkRequest.Builder(TrafficWorker::class.java).build()
+            if (binding.btnShareTraffic.isChecked) {
                 viewModel.reportTrafficSharingEnabled()
-                toggleForegroundServiceState(true)
+                context?.let { WorkManager.getInstance(it).enqueue(uploadTrafficWorkRequest) }
+                workManager.enqueue(uploadTrafficWorkRequest)
+//                toggleForegroundServiceState(true)
                 startAnimation()
             } else {
                 viewModel.reportTrafficSharingDisabled()
-                toggleForegroundServiceState(false)
+                    activity?.let {
+                        WorkManager.getInstance(it).cancelAllWorkByTag("TrafficWorker")
+                    }
+//                workManager.cancelWorkById(uploadTrafficWorkRequest.id)
+
+//                toggleForegroundServiceState(false)
                 stopAnimation()
             }
         }
+
 
 
         sharedViewModel.fetchProfile()
@@ -120,7 +140,7 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
         super.observeViewModels()
 
         sharedViewModel.needToUpdate.observe(viewLifecycleOwner) {
-            if(it) {
+            if (it) {
                 requireContext().showNewVersion {
                     openWebPage(getString(R.string.snack_site))
                 }
@@ -130,17 +150,21 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
         sharedViewModel.profile.observe(viewLifecycleOwner) { profile ->
             profile?.let {
 
-                binding.emailConfirmationRequired.visibility = if(profile.emailConfirmed) View.GONE else View.VISIBLE
+                binding.emailConfirmationRequired.visibility =
+                    if (profile.emailConfirmed) View.GONE else View.VISIBLE
 
                 binding.tvEarned.text = String.format("%.3f", it.currentBalance.dollar)
-                binding.tvGathered.text = resources.getString(R.string.gathered_on_this_device, it.trafficPerWeek.readableFormat())
+                binding.tvGathered.text = resources.getString(
+                    R.string.gathered_on_this_device,
+                    it.trafficPerWeek.readableFormat()
+                )
                 binding.tvGatheredToday.text = it.trafficPerToday.readableFormat()
                 binding.tvEarnedToday.text = String.format("%.3f¢", it.moneyEarnedPerToday.cent)
             }
         }
 
         viewModel.confirmationEmailSent.observe(viewLifecycleOwner) {
-            if(it) {
+            if (it) {
                 binding.btnSendEmail.setText(R.string.resend_email)
             } else {
                 binding.btnSendEmail.setText(R.string.send_email)
@@ -148,7 +172,7 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
         }
 
         ConnectionLiveData(requireContext()).observe(viewLifecycleOwner) { isInternetConnected ->
-            if(isInternetConnected) {
+            if (isInternetConnected) {
                 binding.labelConnecting.text = getString(R.string.on_air_wi_fi)
             } else {
                 binding.labelConnecting.text = getString(R.string.not_connected)
@@ -182,7 +206,7 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
     }
 
     private fun toggleForegroundServiceState(newState: Boolean) {
-        if(newState) {
+        if (newState) {
             if (SnackService.isAppInForeground.not()) {
                 startForegroundService(
                     requireContext(),
@@ -195,7 +219,12 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
         } else {
             viewModel.lastShareButtonState = false
             binding.btnShareTraffic.isChecked = false
-            requireContext().sendBroadcast(Intent(SnackService.SERVICE_ACTION).putExtra(SnackService.SERVICE_STATE_EXTRA, false))
+            requireContext().sendBroadcast(
+                Intent(SnackService.SERVICE_ACTION).putExtra(
+                    SnackService.SERVICE_STATE_EXTRA,
+                    false
+                )
+            )
         }
     }
 
