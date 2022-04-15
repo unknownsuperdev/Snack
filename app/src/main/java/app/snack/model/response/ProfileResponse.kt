@@ -78,7 +78,7 @@ data class Profile(
 
 ) {
     val completeForPayoutPercent
-        get() = currentBalance / 10f * 100f
+        get() = currentBalance /1000 / 10f * 100f
 
 }
 

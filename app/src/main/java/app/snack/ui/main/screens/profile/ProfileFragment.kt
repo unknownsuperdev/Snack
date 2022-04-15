@@ -45,7 +45,7 @@ class ProfileFragment : BindingFragment<FragmentProfileBinding, ProfileViewModel
         sharedViewModel.profile.observe(viewLifecycleOwner) { it ->
 
             it?.let { profile ->
-                binding.tvEarned.text = String.format("$%.3f", profile.currentBalance.toUsd())
+                binding.tvEarned.text = String.format("$%.2f", profile.currentBalance.toUsd(2))
 //                binding.tvEarnings.text = String.format("$%.3f", profile.moneyEarnedPerWeek.cent.toUsd(2))
                 binding.tvEarnings.text = String.format("$%.2f", profile.moneyEarnedPerWeek.toUsd(2))
 
