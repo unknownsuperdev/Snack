@@ -45,9 +45,9 @@ class ProfileFragment : BindingFragment<FragmentProfileBinding, ProfileViewModel
         sharedViewModel.profile.observe(viewLifecycleOwner) { it ->
 
             it?.let { profile ->
-                binding.tvEarned.text = String.format("$%.3f", profile.currentBalance.dollar)
+                binding.tvEarned.text = String.format("$%.3f", profile.currentBalance.toUsd())
 //                binding.tvEarnings.text = String.format("$%.3f", profile.moneyEarnedPerWeek.cent.toUsd(2))
-                binding.tvEarnings.text = profile.moneyEarnedPerWeek.cent.toUsd(2)
+                binding.tvEarnings.text = String.format("$%.2f", profile.moneyEarnedPerWeek.toUsd(2))
 
                 binding.progressLimit.progress = profile.completeForPayoutPercent.toInt()
 
@@ -71,11 +71,11 @@ class ProfileFragment : BindingFragment<FragmentProfileBinding, ProfileViewModel
                 }
 
                 // last week earnings
-                val lastWeekEarnings = profile.moneyEarnedPerLastWeekByDay.map { it.sum.cent }.sum()
+                val lastWeekEarnings = profile.moneyEarnedPerLastWeekByDay.map { it.value }.sum()
 //                binding.lastWeekEarnings.text = String.format("$%.3f", lastWeekEarnings.toUsd(2))
-                binding.lastWeekEarnings.text = lastWeekEarnings.toUsd(2)
+                binding.lastWeekEarnings.text = String.format("$%.2f", lastWeekEarnings.toUsd(2))
 
-                val earningsCurrentWeek = profile.moneyEarnedByWeekByDay.map { it.sum.cent }.sum()
+                val earningsCurrentWeek = profile.moneyEarnedByWeekByDay.map { it.value }.sum()
                 //val earningsExists = profile.moneyEarnedByWeekByDay.firstOrNull { x -> x.sum != 0f }
 
                 // todo mock for testing
@@ -129,10 +129,10 @@ class ProfileFragment : BindingFragment<FragmentProfileBinding, ProfileViewModel
             weekDays[it.day]
         }
 
-        val maxSumValue = sortedValues.maxOf { x -> x.sum.cent }
+        val maxSumValue = sortedValues.maxOf { x -> x.value }
 
 //        binding.tvAxis4.text = String.format("$%.4f", maxSumValue.toUsd(2))
-        binding.tvAxis4.text = maxSumValue.toUsd(2)
+        binding.tvAxis4.text = String.format("$%.2f", maxSumValue.toUsd(2))
 
         // setup chart axis
 
@@ -159,7 +159,7 @@ class ProfileFragment : BindingFragment<FragmentProfileBinding, ProfileViewModel
         }
 
         val set = BarDataSet(
-            sortedValues.mapIndexed { index, item -> BarEntry(index.toFloat(), item.sum.cent)  },
+            sortedValues.mapIndexed { index, item -> BarEntry(index.toFloat(), item.value)  },
             ""
         )
 

@@ -17,6 +17,7 @@ import app.snack.utils.Screen
 import app.snack.utils.extensions.onClick
 import app.snack.utils.extensions.onTextChanged
 import app.snack.utils.extensions.text
+import app.snack.utils.extensions.toUsd
 
 class ProfilePayoutRequestFragment :
     BindingFragment<FragmentProfilePayoutRequestBinding, ProfilePayoutRequestViewModel>() {
@@ -94,7 +95,7 @@ class ProfilePayoutRequestFragment :
             return false
         } else {
             sharedViewModel.profile.value?.let {
-                if(payoutAmount > it.currentBalance.dollar) {
+                if(payoutAmount > it.currentBalance) {
                     binding.tilAmount.error = "Payout can't be more than balance"
                     binding.tilAmount.isErrorEnabled = true
                 } else {

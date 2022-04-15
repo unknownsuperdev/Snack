@@ -43,34 +43,49 @@ data class ProfileResponse(val data: Profile, val status: Int, val version: Stri
 
 data class Profile(
 
+    @SerializedName("email")
     val email: String,
 
+    @SerializedName("current_price")
     val currentPrice: Float,      //  +
 
-    val currentBalance: Balance,      //  +
+    @SerializedName("current_balance")
+    val currentBalance: Float,      //  +
 
-    val currentBalancePaid: Balance,  // ?
+    @SerializedName("current_balance_paid")
+    val currentBalancePaid: Float,  // ?
 
+    @SerializedName("traffic_per_week")
     val trafficPerWeek: Long,
 
-    val moneyEarnedPerWeek: Balance,                          // ?
+    @SerializedName("sc_earned_per_week")
+    val moneyEarnedPerWeek: Float,                          // ?
 
+    @SerializedName("sc_earned_per_last_week_by_day")
     val moneyEarnedByWeekByDay: List<MoneyEarnedByDays> = emptyList(),  // +
 
+    @SerializedName("traffic_per_today")
     val trafficPerToday: Long,      // +
 
-    val moneyEarnedPerToday: Balance,  // +
+    @SerializedName("sc_earned_per_today")
+    val moneyEarnedPerToday: Float,  // +
 
+    @SerializedName("sc_earned_by_week_by_day")
     val moneyEarnedPerLastWeekByDay: List<MoneyEarnedByDays> = emptyList(),
 
+    @SerializedName("email_confirmed")
     val emailConfirmed: Boolean = false
 
 ) {
     val completeForPayoutPercent
-        get() = currentBalance.dollar / 10f * 100f
+        get() = currentBalance / 10f * 100f
 
 }
 
-data class MoneyEarnedByDays(val day: String, val sum: Balance)
+data class MoneyEarnedByDays(
+    @SerializedName("day")
+    val day: String,
+    @SerializedName("value")
+    val value: Float)
 
-data class Balance(val dollar: Float, val cent: Float)
+//data class Balance(val dollar: Float, val cent: Float)
