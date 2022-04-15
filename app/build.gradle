@@ -51,6 +51,7 @@ android {
 
         each {
             buildConfigField("String", "BASE_HOST", "\"https://snck.app\"")
+//            buildConfigField("String", "BASE_HOST", "\"https://develop.snck.app\"")
             buildConfigField("String", "AMPLITUDE_KEY", "\"d69a027ef720d62f772e244fc3a72968\"")
             buildConfigField("String", "PARTNER_SDK_HASH", "\"GVfae8uzXE\"")
             buildConfigField("String", "GOOGLE_CLIENT_ID", "\"981521774205-ompgi941hcqea8h0kpetmv0m9aunntk0.apps.googleusercontent.com\"")

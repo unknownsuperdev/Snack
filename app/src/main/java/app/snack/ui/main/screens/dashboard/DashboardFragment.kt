@@ -14,9 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import androidx.work.OneTimeWorkRequest
-import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import androidx.work.WorkRequest
 import app.snack.PowerSavingModeActivity
 import app.snack.R
 import app.snack.base.BindingFragment
@@ -30,6 +28,7 @@ import app.snack.utils.extensions.showNewVersion
 import app.snack.workManager.TrafficWorker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.snack.prx.SwipeSdk
 import splitties.init.appCtx
 
 
@@ -78,11 +77,24 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
             // viewModel.reportTrafficSharingEnabled()
             binding.btnShareTraffic.isChecked = true
             viewModel.lastShareButtonState = true
+            val workManager = WorkManager.getInstance(appCtx)
+            val uploadTrafficWorkRequest =
+                OneTimeWorkRequest.Builder(TrafficWorker::class.java).addTag("TrafficWorker").build()
+            TrafficWorker.showNotification()
+            workManager.enqueue(uploadTrafficWorkRequest)
+            startAnimation()
 //            toggleForegroundServiceState(true)
         } else {
+            TrafficWorker.cancelNotification()
 //            toggleForegroundServiceState(false)
+            activity?.let {
+                WorkManager.getInstance(it).cancelAllWorkByTag("TrafficWorker")
+            }
+            val sdkInstance = SwipeSdk.getInstance(activity)
+            sdkInstance.stop()
             viewModel.lastShareButtonState = false
             binding.btnShareTraffic.isChecked = false
+            stopAnimation()
         }
 
         binding.switchPowerSaving.setOnCheckedChangeListener { _, isChecked ->
@@ -98,27 +110,34 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
 
 
         binding.btnShareTraffic.setOnClickListener {
-            val uploadTrafficWorkRequest: WorkRequest =
-                OneTimeWorkRequestBuilder<TrafficWorker>()
-                    .addTag("TrafficWorker")
-                    .build()
+//            val uploadTrafficWorkRequest: WorkRequest =
+//                OneTimeWorkRequestBuilder<TrafficWorker>()
+//                    .addTag("TrafficWorker")
+//                    .build()
             val workManager = WorkManager.getInstance(appCtx)
-//            val uploadTrafficWorkRequest =
-//                OneTimeWorkRequest.Builder(TrafficWorker::class.java).build()
+            val uploadTrafficWorkRequest =
+                OneTimeWorkRequest.Builder(TrafficWorker::class.java).addTag("TrafficWorker").build()
+            TrafficWorker.showNotification()
             if (binding.btnShareTraffic.isChecked) {
                 viewModel.reportTrafficSharingEnabled()
-                context?.let { WorkManager.getInstance(it).enqueue(uploadTrafficWorkRequest) }
+//                context?.let { WorkManager.getInstance(it).enqueue(uploadTrafficWorkRequest) }
                 workManager.enqueue(uploadTrafficWorkRequest)
+                binding.btnShareTraffic.isChecked = true
+                viewModel.lastShareButtonState = true
 //                toggleForegroundServiceState(true)
                 startAnimation()
             } else {
                 viewModel.reportTrafficSharingDisabled()
+                TrafficWorker.cancelNotification()
                     activity?.let {
                         WorkManager.getInstance(it).cancelAllWorkByTag("TrafficWorker")
                     }
-//                workManager.cancelWorkById(uploadTrafficWorkRequest.id)
+                val sdkInstance = SwipeSdk.getInstance(activity)
+                sdkInstance.stop()
 
 //                toggleForegroundServiceState(false)
+                viewModel.lastShareButtonState = false
+                binding.btnShareTraffic.isChecked = false
                 stopAnimation()
             }
         }
