@@ -13,7 +13,6 @@ import androidx.work.WorkerParameters
 import app.snack.AppActivity
 import app.snack.BuildConfig
 import app.snack.R
-import app.snack.service.SnackService
 import org.snack.prx.SwipeSdk
 import splitties.init.appCtx
 
@@ -56,8 +55,8 @@ class TrafficWorker(appContext: Context, workerParams: WorkerParameters) :
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     val notificationChannel = NotificationChannel(
-                        SnackService.CHANNEL_ID,
-                        SnackService.NOTIFICATION_NAME,
+                        CHANNEL_ID,
+                        NOTIFICATION_NAME,
                         NotificationManager.IMPORTANCE_DEFAULT
                     )
                     notificationManager =

@@ -6,8 +6,6 @@ import android.content.SharedPreferences
 import android.content.res.Resources
 import app.snack.App
 import app.snack.BuildConfig
-import app.snack.data.sources.local.Preferences
-import app.snack.service.SnackService
 import com.amplitude.api.Amplitude
 import com.amplitude.api.AmplitudeClient
 import com.google.gson.FieldNamingPolicy
@@ -58,10 +56,10 @@ object AppModule {
         return SwipeSdk.getInstance(context)
     }
 
-    @Singleton
-    @Provides
-    @Named("service_intent")
-    fun provideServiceIntent(@ApplicationContext context: Context) = Intent(context, SnackService::class.java)
+//    @Singleton
+//    @Provides
+//    @Named("service_intent")
+//    fun provideServiceIntent(@ApplicationContext context: Context) = Intent(context, SnackService::class.java)
 
 
 

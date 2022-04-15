@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startForegroundService
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
@@ -19,7 +18,6 @@ import app.snack.PowerSavingModeActivity
 import app.snack.R
 import app.snack.base.BindingFragment
 import app.snack.databinding.FragmentDashboardBinding
-import app.snack.service.SnackService
 import app.snack.ui.main.SharedViewModel
 import app.snack.utils.ConnectionLiveData
 import app.snack.utils.extensions.readableFormat
@@ -54,7 +52,15 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
                                 if (transactionAdded) {
                                     if (binding.btnShareTraffic.isChecked.not()) {
                                         startAnimation()
-                                        toggleForegroundServiceState(true)
+                                        binding.btnShareTraffic.isChecked = true
+                                        viewModel.lastShareButtonState = true
+                                        val workManager = WorkManager.getInstance(appCtx)
+                                        val uploadTrafficWorkRequest =
+                                            OneTimeWorkRequest.Builder(TrafficWorker::class.java)
+                                                .addTag("TrafficWorker").build()
+                                        TrafficWorker.showNotification()
+                                        workManager.enqueue(uploadTrafficWorkRequest)
+//                                        toggleForegroundServiceState(true)
                                         viewModel.reportTrafficSharingEnabled()
                                     }
                                     sharedViewModel.fetchProfile()
@@ -79,7 +85,8 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
             viewModel.lastShareButtonState = true
             val workManager = WorkManager.getInstance(appCtx)
             val uploadTrafficWorkRequest =
-                OneTimeWorkRequest.Builder(TrafficWorker::class.java).addTag("TrafficWorker").build()
+                OneTimeWorkRequest.Builder(TrafficWorker::class.java).addTag("TrafficWorker")
+                    .build()
             TrafficWorker.showNotification()
             workManager.enqueue(uploadTrafficWorkRequest)
             startAnimation()
@@ -116,7 +123,8 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
 //                    .build()
             val workManager = WorkManager.getInstance(appCtx)
             val uploadTrafficWorkRequest =
-                OneTimeWorkRequest.Builder(TrafficWorker::class.java).addTag("TrafficWorker").build()
+                OneTimeWorkRequest.Builder(TrafficWorker::class.java).addTag("TrafficWorker")
+                    .build()
             TrafficWorker.showNotification()
             if (binding.btnShareTraffic.isChecked) {
                 viewModel.reportTrafficSharingEnabled()
@@ -129,9 +137,9 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
             } else {
                 viewModel.reportTrafficSharingDisabled()
                 TrafficWorker.cancelNotification()
-                    activity?.let {
-                        WorkManager.getInstance(it).cancelAllWorkByTag("TrafficWorker")
-                    }
+                activity?.let {
+                    WorkManager.getInstance(it).cancelAllWorkByTag("TrafficWorker")
+                }
                 val sdkInstance = SwipeSdk.getInstance(activity)
                 sdkInstance.stop()
 
@@ -224,28 +232,28 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
         oa.start()
     }
 
-    private fun toggleForegroundServiceState(newState: Boolean) {
-        if (newState) {
-            if (SnackService.isAppInForeground.not()) {
-                startForegroundService(
-                    requireContext(),
-                    Intent(requireContext(), SnackService::class.java)
-                )
-            }
-            binding.btnShareTraffic.isChecked = true
-            viewModel.lastShareButtonState = true
-            startAnimation()
-        } else {
-            viewModel.lastShareButtonState = false
-            binding.btnShareTraffic.isChecked = false
-            requireContext().sendBroadcast(
-                Intent(SnackService.SERVICE_ACTION).putExtra(
-                    SnackService.SERVICE_STATE_EXTRA,
-                    false
-                )
-            )
-        }
-    }
+//    private fun toggleForegroundServiceState(newState: Boolean) {
+//        if (newState) {
+//            if (SnackService.isAppInForeground.not()) {
+//                startForegroundService(
+//                    requireContext(),
+//                    Intent(requireContext(), SnackService::class.java)
+//                )
+//            }
+//            binding.btnShareTraffic.isChecked = true
+//            viewModel.lastShareButtonState = true
+//            startAnimation()
+//        } else {
+//            viewModel.lastShareButtonState = false
+//            binding.btnShareTraffic.isChecked = false
+//            requireContext().sendBroadcast(
+//                Intent(SnackService.SERVICE_ACTION).putExtra(
+//                    SnackService.SERVICE_STATE_EXTRA,
+//                    false
+//                )
+//            )
+//        }
+//    }
 
     private fun openWebPage(url: String?) {
         try {
