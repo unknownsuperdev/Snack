@@ -77,9 +77,6 @@ interface SnackAPI {
     @POST("/transactions/add")
     suspend fun transactionsAdd(@Header("Authorization") token: String, @Body request: TransactionAdd): Response<SuccessResponse>
 
-    @POST("/transactions/add")
-    suspend fun transactionsAddNegative(@Header("Authorization") token: String, @Body request: TransactionAddBonus): Response<SuccessResponse>
-
     // endregion
 
     // region support

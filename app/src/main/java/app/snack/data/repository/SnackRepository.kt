@@ -282,9 +282,8 @@ class SnackRepository @Inject constructor(
 
     override suspend fun transactionAddNegative(): Result =
         try {
-//            val transaction = TransactionAdd("", 2f, -6.0f)
-            val transaction = TransactionAddBonus("")
-            val response = api.transactionsAddNegative(token, transaction)
+            val transaction = TransactionAdd("",-6.0f)
+            val response = api.transactionsAdd(token, transaction)
             when (response.isSuccessful) {
                 true -> {
                     Result.Success
