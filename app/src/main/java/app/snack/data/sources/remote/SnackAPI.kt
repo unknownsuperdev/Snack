@@ -59,8 +59,8 @@ interface SnackAPI {
     @POST("/user/checkEmail")
     suspend fun checkEmail(@Header("Authorization") token: String, @Body request: UserRequest.Email): Response<ValidationResponse>
 
-    @GET("/user/checkNegativeTransactions")
-    suspend fun checkNegativeTransactions(@Header("Authorization") token: String): Response<ValidationResponse>
+    @GET("/transactions/isWelcomeBonusActivated")
+    suspend fun isWelcomeBonusActivated(@Header("Authorization") token: String): Response<ValidationResponse>
 
     @GET("/user/enableTrafficSharing")
     suspend fun enableTrafficSharing(@Header("Authorization") token: String): Response<SuccessResponse>
@@ -76,6 +76,9 @@ interface SnackAPI {
 
     @POST("/transactions/add")
     suspend fun transactionsAdd(@Header("Authorization") token: String, @Body request: TransactionAdd): Response<SuccessResponse>
+
+    @POST("/transactions/applyWelcomeBonus")
+    suspend fun applyWelcomeBonus(@Header("Authorization") token: String): Response<ApplyWelcomeBonusResponse>
 
     // endregion
 

@@ -34,8 +34,8 @@ interface Repository {
 
     suspend fun transactionsHistory(): TransactionsResult
     suspend fun transactionAdd(transactionRequest: TransactionAdd): Result
-    suspend fun transactionAddNegative(): Result
-    suspend fun checkNegativeTransactions(): Result
+    suspend fun applyWelcomeBonus(): Result
+    suspend fun isWelcomeBonusActivated(): Result
 
     suspend fun supportSendEmail(message: SupportMessage): Result
 
@@ -280,10 +280,9 @@ class SnackRepository @Inject constructor(
         }
 
 
-    override suspend fun transactionAddNegative(): Result =
+    override suspend fun applyWelcomeBonus(): Result =
         try {
-            val transaction = TransactionAdd("", 2f, -6.0f)
-            val response = api.transactionsAdd(token, transaction)
+            val response = api.applyWelcomeBonus(token)
             when (response.isSuccessful) {
                 true -> {
                     Result.Success
@@ -294,13 +293,13 @@ class SnackRepository @Inject constructor(
             Result.fromException(exception)
         }
 
-    override suspend fun checkNegativeTransactions(): Result =
+    override suspend fun isWelcomeBonusActivated(): Result =
         try {
-            val response = api.checkNegativeTransactions(token)
+            val response = api.isWelcomeBonusActivated(token)
             when (response.isSuccessful) {
                 true -> {
                     val result = response.body()!!
-                    if (result.data.validation) {
+                    if (!result.data.validation) {
                         Result.Success
                     } else {
                         Result.Failure()

@@ -30,12 +30,12 @@ class DashboardViewModel @Inject constructor(
         }
         get() = preferences.lastShareButtonState
 
-    val isBonusGiven
-        get() = preferences.isBonusGiven
-
-    fun setBonusGiven() {
-        preferences.isBonusGiven = true
-    }
+//    val isBonusGiven
+//        get() = preferences.isBonusGiven
+//
+//    fun setBonusGiven() {
+//        preferences.isBonusGiven = true
+//    }
 
     private val _confirmationEmailSent = MutableLiveData<Boolean>()
     val confirmationEmailSent: LiveData<Boolean>
@@ -90,9 +90,9 @@ class DashboardViewModel @Inject constructor(
     }
 
 
-    fun addNegativeTransaction() = liveData(Dispatchers.IO) {
+    fun applyWelcomeBonus() = liveData(Dispatchers.IO) {
 
-        when(val result = repository.transactionAddNegative()) {
+        when(val result = repository.applyWelcomeBonus()) {
             is Result.Success -> {
                 showMessage("Bonus balance added")
                 emit(true)
@@ -106,7 +106,7 @@ class DashboardViewModel @Inject constructor(
 
     fun checkNegativeTransactionsWithDelay() = liveData(Dispatchers.IO) {
         delay(3000)
-        when(val result = repository.checkNegativeTransactions()) {
+        when(val result = repository.isWelcomeBonusActivated()) {
             is Result.Success -> emit(true)
             is Result.Failure -> emit(false)
         }

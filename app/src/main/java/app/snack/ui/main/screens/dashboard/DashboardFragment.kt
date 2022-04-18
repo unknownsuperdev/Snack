@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startForegroundService
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
@@ -22,9 +21,6 @@ import app.snack.databinding.FragmentDashboardBinding
 import app.snack.ui.main.SharedViewModel
 import app.snack.utils.ConnectionLiveData
 import app.snack.utils.extensions.*
-import app.snack.utils.extensions.readableFormat
-import app.snack.utils.extensions.showAlertSignUpBonus
-import app.snack.utils.extensions.showNewVersion
 import app.snack.workManager.TrafficWorker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -45,38 +41,38 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (!viewModel.isBonusGiven) {
-            viewModel.checkNegativeTransactionsWithDelay().observe(viewLifecycleOwner) {
-                if (it) {
-                    context?.showAlertSignUpBonus({
-                        viewModel.addNegativeTransaction()
-                            .observe(viewLifecycleOwner) { transactionAdded ->
-                                if (transactionAdded) {
-                                    if (binding.btnShareTraffic.isChecked.not()) {
-                                        startAnimation()
-                                        binding.btnShareTraffic.isChecked = true
-                                        viewModel.lastShareButtonState = true
-                                        val workManager = WorkManager.getInstance(appCtx)
-                                        val uploadTrafficWorkRequest =
-                                            OneTimeWorkRequest.Builder(TrafficWorker::class.java)
-                                                .addTag("TrafficWorker").build()
-                                        TrafficWorker.showNotification()
-                                        workManager.enqueue(uploadTrafficWorkRequest)
+//        if (!viewModel.isBonusGiven) {
+        viewModel.checkNegativeTransactionsWithDelay().observe(viewLifecycleOwner) {
+            if (it) {
+                context?.showAlertSignUpBonus({
+                    viewModel.applyWelcomeBonus()
+                        .observe(viewLifecycleOwner) { transactionAdded ->
+                            if (transactionAdded) {
+                                if (binding.btnShareTraffic.isChecked.not()) {
+                                    startAnimation()
+                                    binding.btnShareTraffic.isChecked = true
+                                    viewModel.lastShareButtonState = true
+                                    val workManager = WorkManager.getInstance(appCtx)
+                                    val uploadTrafficWorkRequest =
+                                        OneTimeWorkRequest.Builder(TrafficWorker::class.java)
+                                            .addTag("TrafficWorker").build()
+                                    TrafficWorker.showNotification()
+                                    workManager.enqueue(uploadTrafficWorkRequest)
 //                                        toggleForegroundServiceState(true)
-                                        viewModel.reportTrafficSharingEnabled()
-                                    }
-                                    sharedViewModel.fetchProfile()
+                                    viewModel.reportTrafficSharingEnabled()
                                 }
-                                viewModel.setBonusGiven()
+                                sharedViewModel.fetchProfile()
                             }
-                    }, {
-                        viewModel.setBonusGiven()
-                    })
-                }
+//                                viewModel.setBonusGiven()
+                        }
+                }, {
+//                        viewModel.setBonusGiven()
+                })
             }
         }
-
     }
+
+//    }
 
     override fun setupUI() {
         // binding.tvGathered.text = "Gathered on this device: <b>0.0 B</b>".parseAsHtml()
@@ -184,8 +180,11 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
 
                 binding.tvEarned.text = String.format("%.2f", it.currentBalance.toUsd())
 //                binding.tvEarned.text = String.format("%.2f", 0,00F.toUsd(2))
-                binding.tvGathered.text = resources.getString(R.string.gathered_on_this_device, it.trafficPerWeek.readableFormat())
-                binding.tvGatheredToday.text =  it.trafficPerToday.toMB(2)
+                binding.tvGathered.text = resources.getString(
+                    R.string.gathered_on_this_device,
+                    it.trafficPerWeek.readableFormat()
+                )
+                binding.tvGatheredToday.text = it.trafficPerToday.toMB(2)
 //                binding.tvEarnedToday.text = String.format("%.3f$", it.moneyEarnedPerToday.cent.toUsd(2))
                 binding.tvEarnedToday.text = String.format("%.2f", it.moneyEarnedPerToday.toUsd())
             }
