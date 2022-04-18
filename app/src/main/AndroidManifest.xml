@@ -40,7 +40,7 @@
             android:windowSoftInputMode="adjustPan"
             android:exported="true"/>
 
-        <service android:name=".service.SnackService"/>
+<!--        <service android:name=".service.SnackService"/>-->
 
     </application>
 

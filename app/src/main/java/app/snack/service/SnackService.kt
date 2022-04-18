@@ -10,15 +10,13 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import app.snack.AppActivity
 import app.snack.BuildConfig
 import app.snack.R
 import org.snack.prx.SwipeSdk
-import splitties.resources.int
 
-class SnackService: Service() {
+class SnackService : Service() {
 
     companion object {
         val CHANNEL_ID = "Channel1"
@@ -36,10 +34,11 @@ class SnackService: Service() {
 
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            if(intent.action == SERVICE_ACTION) {
+            if (intent.action == SERVICE_ACTION) {
 
                 val intent1 = Intent(context, AppActivity::class.java)
-                val pendingIntent = PendingIntent.getActivity(context, 0, intent1, PendingIntent.FLAG_IMMUTABLE)
+                val pendingIntent =
+                    PendingIntent.getActivity(context, 0, intent1, PendingIntent.FLAG_IMMUTABLE)
 
                 val notification = NotificationCompat
                     .Builder(context, CHANNEL_ID)
@@ -48,7 +47,7 @@ class SnackService: Service() {
                     .setContentIntent(pendingIntent)
 
                 val newSdkState = intent.getBooleanExtra(SERVICE_STATE_EXTRA, false)
-                if(newSdkState) {
+                if (newSdkState) {
                     notification.setContentText("Snack traffic sharing started!")
                     sdkInstance.start()
                     val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -67,7 +66,8 @@ class SnackService: Service() {
         createNotificationChannel()
 
         val intent1 = Intent(this, AppActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent =
+            PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_IMMUTABLE)
 
         val notification = NotificationCompat
             .Builder(this, CHANNEL_ID)
@@ -110,7 +110,7 @@ class SnackService: Service() {
     private fun createNotificationChannel() {
         // we have to check if OS is oreo and above ( >= 8.0)
         // to create notification channel
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 CHANNEL_ID,
                 NOTIFICATION_NAME,

@@ -31,6 +31,7 @@ class Preferences @Inject constructor(
         const val PREF_TRAFFIC_LIMIT = "$PREFERENCES_NAME-PREF_TRAFFIC_LIMIT"
         const val PREF_LAST_SHARE_BUTTON_STATE = "$PREFERENCES_NAME-PREF_LAST_SHARE_BUTTON_STATE"
         const val PREF_CONFIRMATION_SEND = "$PREFERENCES_NAME-PREF_CONFIRMATION_SEND"
+        const val PREF_KEY_APP_AUTO_START = "$PREFERENCES_NAME-PREF_KEY_APP_AUTO_START"
     }
 
     var isMobileAllowed: Boolean
@@ -156,5 +157,11 @@ class Preferences @Inject constructor(
             preferences.edit { putBoolean(Constants.PREF_DEVICE_REGISTERED, value) }
         }
         get() = preferences.getBoolean(Constants.PREF_DEVICE_REGISTERED, false)
+
+    var isAutoStart: Boolean
+        set(value) {
+            preferences.edit { putBoolean(Constants.PREF_KEY_APP_AUTO_START, value) }
+        }
+        get() = preferences.getBoolean(Constants.PREF_KEY_APP_AUTO_START, false)
 
 }

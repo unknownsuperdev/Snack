@@ -1,21 +1,21 @@
 package app.snack.ui.main.screens.settings
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
+import androidx.work.WorkManager
 import app.snack.base.BindingFragment
 import app.snack.databinding.FragmentSettingsBinding
-import app.snack.service.SnackService
 import app.snack.ui.main.SharedViewModel
 import app.snack.utils.Screen
 import app.snack.utils.extensions.onCheck
 import app.snack.utils.extensions.onClick
 import app.snack.utils.extensions.showAlertDisableMobileData
 import app.snack.utils.extensions.showAlertLogout
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.Scopes
+import app.snack.workManager.TrafficWorker
+import org.snack.prx.SwipeSdk
+import splitties.init.appCtx
 
 class SettingsFragment : BindingFragment<FragmentSettingsBinding, SettingsViewModel>() {
 
@@ -37,9 +37,15 @@ class SettingsFragment : BindingFragment<FragmentSettingsBinding, SettingsViewMo
             btnLogout.onClick {
                 showAlertLogout {
 
-                    requireContext().sendBroadcast(
-                        Intent(SnackService.SERVICE_ACTION).putExtra(
-                            SnackService.SERVICE_STATE_EXTRA, false))
+                    TrafficWorker.cancelNotification()
+                    activity?.let {
+                        WorkManager.getInstance(it).cancelAllWorkByTag("TrafficWorker")
+                    }
+                    val sdkInstance = SwipeSdk.getInstance(activity)
+                    sdkInstance.stop()
+//                    requireContext().sendBroadcast(
+//                        Intent(SnackService.SERVICE_ACTION).putExtra(
+//                            SnackService.SERVICE_STATE_EXTRA, false))
 
                     sharedViewModel.logout()
                     showScreen(Screen.LOGIN)
@@ -73,7 +79,7 @@ class SettingsFragment : BindingFragment<FragmentSettingsBinding, SettingsViewMo
             binding.switchAllowMobileData.isChecked = isCheckedFetchedValue
 
             binding.switchAllowMobileData.onCheck { isChecked ->
-                if(isChecked.not()) {
+                if (isChecked.not()) {
                     showAlertDisableMobileData({
                         viewModel.setAllowMobileData(false)
                     }, {
@@ -87,13 +93,14 @@ class SettingsFragment : BindingFragment<FragmentSettingsBinding, SettingsViewMo
             }
         }
 
-        viewModel.fetchStopValueOnLowBattery().observe(viewLifecycleOwner) { isCheckedFetchedValue ->
-            binding.switchStopSharingData.isChecked = isCheckedFetchedValue
-        }
+        viewModel.fetchStopValueOnLowBattery()
+            .observe(viewLifecycleOwner) { isCheckedFetchedValue ->
+                binding.switchStopSharingData.isChecked = isCheckedFetchedValue
+            }
 
         viewModel.isNativeAuthentication().observe(viewLifecycleOwner) { isNativeAuth ->
 
-            val visibility = if(isNativeAuth) View.VISIBLE else View.GONE
+            val visibility = if (isNativeAuth) View.VISIBLE else View.GONE
 
             binding.btnChangeEmail.visibility = visibility
             binding.divider.visibility = visibility
