@@ -182,11 +182,12 @@ class DashboardFragment : BindingFragment<FragmentDashboardBinding, DashboardVie
                 binding.emailConfirmationRequired.visibility =
                     if (profile.emailConfirmed) View.GONE else View.VISIBLE
 
-                binding.tvEarned.text = String.format("%.2f", it.currentBalance.toUsd(2))
+                binding.tvEarned.text = String.format("%.2f", it.currentBalance.toUsd())
+//                binding.tvEarned.text = String.format("%.2f", 0,00F.toUsd(2))
                 binding.tvGathered.text = resources.getString(R.string.gathered_on_this_device, it.trafficPerWeek.readableFormat())
                 binding.tvGatheredToday.text =  it.trafficPerToday.toMB(2)
 //                binding.tvEarnedToday.text = String.format("%.3f$", it.moneyEarnedPerToday.cent.toUsd(2))
-                binding.tvEarnedToday.text = String.format("%.2f", it.moneyEarnedPerToday.toUsd(2))
+                binding.tvEarnedToday.text = String.format("%.2f", it.moneyEarnedPerToday.toUsd())
             }
         }
 
