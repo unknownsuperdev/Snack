@@ -1,12 +1,9 @@
-package app.snack.ui.main.screens.settings.screens.termsConfirmation
+package app.snack.ui.main.screens.settings.screens.privacyConfirmation
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
 import app.snack.R

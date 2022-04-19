@@ -1,7 +1,5 @@
-package app.snack.ui.main.screens.settings.screens.termsConfirmation
+package app.snack.ui.main.screens.settings.screens.privacyConfirmation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import app.snack.base.BaseViewModel
 import app.snack.data.repository.Repository

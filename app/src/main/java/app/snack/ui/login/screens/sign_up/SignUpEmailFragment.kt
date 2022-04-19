@@ -50,7 +50,7 @@ class SignUpEmailFragment : BindingFragment<FragmentSignUpEmailBinding, LoginVie
             cbTerms.setOnCheckedChangeListener { _, _ -> checkNextEnable() }
 
             btnTerms.onClick {
-                // addScreen(Screen.SETTINGS_TERMS)
+                 addScreen(Screen.TERMS_AND_CONDITIONS)
             }
             btnSignIn.onClick { addScreen(Screen.SIGN_IN) }
             fabNext.onClick {

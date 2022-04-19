@@ -33,7 +33,8 @@ import app.snack.ui.main.screens.settings.screens.limit_traffic.SettingsLimitTra
 import app.snack.ui.main.screens.settings.screens.privacy_policy.SettingsPrivacyPolicyFragment
 import app.snack.ui.main.screens.settings.screens.support.SettingsSupportFragment
 import app.snack.ui.main.screens.settings.screens.terms.SettingsTermsFragment
-import app.snack.ui.main.screens.settings.screens.termsConfirmation.PrivacyConfirmationFragment
+import app.snack.ui.main.screens.settings.screens.privacyConfirmation.PrivacyConfirmationFragment
+import app.snack.ui.main.screens.settings.screens.termsAndConditions.TermsAndConditionsFragment
 import app.snack.ui.onboarding.OnboardingFragment
 import app.snack.utils.NavAction
 import app.snack.utils.Navigator
@@ -174,6 +175,12 @@ abstract class BindingFragment<out VB : ViewBinding, out VM : BaseViewModel> : F
 
             Screen.SIGN_IN -> showFragment(
                 fragment = SignInFragment(),
+                tag = screen.name,
+                animEnter = R.anim.slide_in_bottom,
+                animExit = R.anim.slide_out_bottom,
+            )
+            Screen.TERMS_AND_CONDITIONS -> showFragment(
+                fragment = TermsAndConditionsFragment(),
                 tag = screen.name,
                 animEnter = R.anim.slide_in_bottom,
                 animExit = R.anim.slide_out_bottom,
